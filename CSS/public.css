@@ -1,0 +1,19 @@
+
+html,body{
+	width: 100%;
+	height: 100%;
+}
+
+.txt-center{
+	text-align: center;
+}
+
+.title-pinkish{
+	font-size: 20px;
+	color: #f03b74 !important;
+}
+
+.finish-size{
+	color: #666;
+	font-size: 14px;
+}

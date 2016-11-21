@@ -1,0 +1,32 @@
+.br-container{
+	display: flex;
+	height: 100%;
+	margin-bottom: 0;
+	flex-direction: column;
+	background-color: #f0f0f0;
+}
+
+.br-title{
+	height: 48px;
+}
+
+.br-body{
+	flex: 1;
+	overflow: scroll;
+}
+
+.br-content{
+	font-size: 16px;
+}
+
+.br-content-title{
+	text-indent: 2em;
+}
+
+tr>td:first-child{
+	width: 20%;	
+}
+
+.br-footer{
+	height: 40px;
+}
