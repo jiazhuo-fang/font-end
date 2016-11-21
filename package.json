@@ -1,0 +1,22 @@
+{
+  "name": "npm-dependence",
+  "version": "1.0.0",
+  "description": "this is npm dependence of font-end project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiazhuo-fang/font-end.git"
+  },
+  "author": "jiazhuo.fang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiazhuo-fang/font-end/issues"
+  },
+  "homepage": "https://github.com/jiazhuo-fang/font-end#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

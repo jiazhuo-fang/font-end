@@ -1,0 +1,24 @@
+{
+  "name": "bower-dependence",
+  "description": "this is bower dependence of font-end project",
+  "main": "index.js",
+  "authors": [
+    "jiazhuo.fang"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "bower"
+  ],
+  "homepage": "https://github.com/jiazhuo-fang/font-end",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}
