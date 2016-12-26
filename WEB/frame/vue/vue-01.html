@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="../../../CSS/public.css">
+        <link rel="stylesheet" href="../../../CSS/vue/vue-01.css">
+    </head>
+    <body>
+        <div class="title" id="app">
+            {{message}}
+            <span class="title-introduce" v-text="introduce"></span>
+        </div>
+        <ul class="vue-usage-container" id="body">
+            <li class="usage-list">
+                <div class="curtain-upon" v-bind:class="{'to-down': curtainUponStatus}"></div>
+                <div class="curtain-down" v-bind:class="{'to-up': curtainDownStatus}"></div>
+                <div class="btn" v-on:click="AnimationClick()" v-bind:class="{'animation-scale': btnScale}"></div>
+            </li>
+            <!--<li class="usage-list"></li>
+            <li class="usage-list"></li>-->
+        </ul>
+        <nav id="nav">{{value}}</nav>
+    </body>
+    <script src="../../../bower_components/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                introduce: '---用法介绍'
+            }
+        });
+        var body = new Vue({
+            el: '#body',
+            data: {
+                curtainUponStatus: false,
+                curtainDownStatus: false,
+                btnScale: false
+            },
+            methods: {
+                AnimationClick: function(){
+                    if(!this.curtainUponStatus && !this.curtainDownStatus && !this.btnScale){
+                        this.curtainUponStatus = true;
+                        this.curtainDownStatus = true;
+                        this.btnScale = true;
+                    }
+                    else{
+                        this.curtainUponStatus = false;
+                        this.curtainDownStatus = false;
+                        this.btnScale = false;
+                    }
+                }
+            }
+        });
+        var nav = new Vue({
+            el: '#nav',
+            data: {
+                value: '这里是nav'
+            }
+        });
+    </script>
+</html>

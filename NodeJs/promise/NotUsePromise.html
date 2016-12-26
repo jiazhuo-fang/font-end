@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>利用js中的回调函数来实现异步</title>
+		<style>
+			html,body{
+				height: 100%;
+			}
+			html,body,div{
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				display: flex;
+				height: 100%;
+				padding: 50px 0;
+				flex-direction: column;
+				box-sizing: border-box;
+			}
+
+			.container>div{
+				width: 50px;
+				height: 50px;
+				margin: 30px 0;
+				border-radius: 50px;
+				box-shadow: 0 2px 5px rgba(0,0,0,.3);
+			}
+
+			.container>div:first-child{
+				background: #f02b5b;		}
+
+			.container>div:nth-of-type(2){
+				background: #00c901;
+			}
+
+			.container>div:nth-child(3){
+				background: #f8e81c;
+			}
+
+			.infinite-rotate{
+				-webkit-animation: infiniteRotate3d 900ms linear infinite;
+				-moz-animation: infiniteRotate3d 900ms linear infinite;
+				-ms-animation: infiniteRotate3d 900ms linear infinite;
+				animation: infiniteRotate3d 900ms linear infinite;
+			}
+
+			@keyframes infiniteRotate3d{
+				0%{
+					-webkit-transform: rotateY(0deg);
+					-moz-transform: rotateY(0deg);
+					-ms-transform: rotateY(0deg);
+					transform: rotateY(0deg);
+				}
+				100%{
+					-webkit-transform: rotateY(360deg);
+					-moz-transform: rotateY(360deg);
+					-ms-transform: rotateY(360deg);
+					transform: rotateY(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+	<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var container = $('#container');
+			function animation(){
+
+			}
+			$('#container')
+				.find('div')
+				.eq(0)
+				.addClass('infinite-rotate');
+			setTimeout(function(){
+				console.log($('#container').find('div').eq(0).css('transform'));
+				$('#container')
+					.find('div')
+					.eq(1)
+					.addClass('infinite-rotate');
+				setTimeout(function(){
+					$('#container')
+						.find('div')
+						.eq(2)
+						.addClass('infinite-rotate');
+				},600)
+			},300)
+		});
+	</script>
+</html>
