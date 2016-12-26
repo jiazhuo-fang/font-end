@@ -35,36 +35,117 @@ body{
     background: rgba(0,0,0,.9);
 }
 
-.curtain-upon,
-.curtain-down{
+.curtain-upon{
     position: absolute;
-    width: 100%;
-    height: 50%;
-    transition: transform .5s ease;
+    width: 80%;
+    height: 90%;
+    left: 10%;
+    transform: translateY(112%);
+    background: powderblue;
+    transition: transform .6s ease;
     z-index: 2;
 }
 
-.curtain-upon{
-    transform: translateY(-100%);
-    background: powderblue;
+.curtain-upon>div{
+    position: relative;
+    height: 100%;
+    padding-top: 50px;
+    opacity: 0;
+    background: #fff;
+    transition: opacity .5s .5s ease;
 }
 
-.curtain-down{
-    bottom: 0;
-    transform: translateY(100%);
-    background: powderblue;
+.curtain-upon img{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .btn{
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 30px;
+    top: 50%;
+    left: 10%;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    background: #f02b5b;
+    z-index: 1;
+}
+
+svg{
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    padding: 16px;
+    margin: -48px 0 0 -48px;
     top: 50%;
     left: 50%;
-    margin: -50px 0 0 -50px;
+    border: 4px solid #fff;
     border-radius: 100%;
-    background: #f02b5b;
-    z-index: 5;
+    background: #f6a623;
+    z-index: 10;
+    box-sizing: border-box;
+    opacity: 0;
+    box-shadow: 0 0 6px rgba(0,0,0,.75);
+    transition: all .5s ease;
+}
+
+svg>path{
+    fill: #f8e81c;
+}
+
+.first-path{
+    opacity: 0;
+    animation: firstAnimation 1s .33s linear infinite;
+}
+
+.second-path{
+    opacity: 0;
+    animation: secondAnimation 1s .66s linear infinite;
+}
+
+.third-path{
+    opacity: 0;
+    animation: thirdAnimation 1s .99s linear infinite;
+}
+
+@keyframes firstAnimation{
+    20%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes secondAnimation{
+    20%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes thirdAnimation{
+    20%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 nav{
@@ -76,12 +157,20 @@ nav{
     background: #f0f0f0;
 }
 
-.to-down{
-    transform: translateY(0);
+.to-up{
+    transform: translateY(15%);
 }
 
-.to-up{
-    transform: translateY(0);
+.go-up{
+    transform: translateY(-180px);
+}
+
+.opacity-show{
+    opacity: 1;
+}
+
+.curtain-upon>div.opacity-show{
+    opacity: 1;
 }
 
 .animation-scale{
