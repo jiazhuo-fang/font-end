@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" href="/CSS/public.css">
+		<style>
+			.index-container{
+				height: 100%;
+			}
+			.index-container>p{
+				height: 50px; font-size: 20px; color: #666; font-weight: 600; 
+				text-align: center; line-height: 50px;
+			}
+			.index-list{
+				display: flex; width: 100%; height: 50px; justify-content: space-around; align-items: center;
+			}
+			.index-list>a{
+				font-size: 16px; color: #999;
+			}
+			.product-show-container{
+				height: calc(100% - 100px);
+			}
+			.shoe-container,
+			.clothe-container,
+			.coat-container{
+				display: flex; justify-content: center; align-items: center; height: 100%; font-size: 30px;
+				color: #f02b5b; background: #e1e1e1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="body-container" id="app">
+			<header>
+				<h1>router----demo03</h1>
+			</header>
+			<div class="page-content-container">
+				<router-view></router-view>
+			</div>
+			<nav>
+				<router-link to="/index">index</router-link>
+				<router-link to="/list">list</router-link>
+				<router-link to="/profile">profile</router-link>
+			</nav>
+		</div>
+	</body>
+	<script src="/bower_components/vue/dist/vue.min.js"></script>
+	<script src="/bower_components/vue-router/dist/vue-router.min.js"></script>
+	<script>
+		const Index = {
+			template: `
+				<div class="index-container">
+					<p>服装店</p>
+					<div class="index-list">
+						<router-link to="/index-shoe">潮鞋区</router-link>
+						<router-link to="/index-clothe">潮鞋区潮鞋区</router-link>
+						<router-link to="/index-down-coat">羽绒服专场</router-link>
+					</div>
+					<div class="product-show-container">
+						<router-view>
+					</div>
+				</div>
+			`
+		};
+		const Shoe = {
+			template: '<div class="shoe-container">潮鞋区</div>'
+		}
+		const Clothe = {
+			template: '<div class="clothe-container">潮鞋区潮鞋区</div>'
+		}
+		const Coat = {
+			template: '<div class="coat-container">羽绒服专场</div>'
+		}
+		const List = {
+			template: '<div>list</div>'
+		};
+		const Profile = {
+			template: '<div>profile</div>'
+		};
+		const IndexChild = [
+			{path: '',component: Shoe},
+			{path:'/index-shoe',component: Shoe},
+			{path: '/index-clothe',component: Clothe},
+			{path: '/index-down-coat',component: Coat}
+		]
+		const routes = [
+			{
+				path: '',component: Index,
+				children: IndexChild
+			},
+			{path: '/index',component: Index},
+			{path: '/list',component: List},
+			{path: '/profile',component: Profile}
+		];
+		const router = new VueRouter({
+			routes: routes
+		});
+		const app = new Vue({
+			router: router
+		}).$mount('#app')
+	</script>
+</html>

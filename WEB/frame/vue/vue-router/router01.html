@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewpoint" content="width=device-width,initial-scale=1.0">
+		<title>router-01</title>
+		<link rel="stylesheet" href="">
+		<style>
+			html,body,header,div,nav,h1,span{
+				margin: 0; padding: 0; 
+			}
+			html,body,#app{
+				height: 100%; background: linear-gradient(top,#fff,#e1e1e1);
+			}
+			header>h1{
+				height: 50px; line-height: 50px; text-align: center; color: #f02b5b; background-color: #a1a1a1;
+			}
+			.show-container{
+				height: calc(100% - 100px);
+			}
+			.router-container{
+				display: flex; height: 100%; justify-content: center; align-items: center;
+				font-size: 30px; color: #fff; text-shadow: 0 0 1px rgba(0,0,0,.5);
+			}
+			nav{
+				display: flex; height: 50px; justify-content: space-between;
+			}
+			nav a{
+				display: block; width: 80px; height: 50px; text-align: center; line-height: 50px; 
+				font-size: 18px; text-decoration: none; color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<header>
+				<h1>Hello vue-router</h1>
+			</header>
+			<div class="show-container">
+				<router-view></router-view>
+			</div>
+			<nav>
+				<span>
+					<router-link to="/main/fang/128">首页</router-link>
+				</span>
+				<span>
+					<router-link to="/list">列表</router-link>
+				</span>
+				<span>
+					<router-link to="/profile">个人中心</router-link>
+				</span>
+			</nav>
+		</div>
+			
+	</body>
+	<script src="/bower_components/vue/dist/vue.min.js"></script>
+	<script src="/bower_components/vue-router/dist/vue-router.min.js"></script>
+	<script>
+		'user strict';
+
+		const Main = {
+			template: '<div class=\'router-container\'>首页---{{$route.params.username}}---{{$route.params.id}}</div>'
+		};
+		const List = {
+			template: '<div class=\'router-container\'>列表信息</div>'
+		};
+		const Profile = {
+			template: '<div class=\'router-container\'>个人中心</div>'
+		};
+		const rou = [
+			{path: '/main/:username/:id',component: Main},
+			{path: '/list',component: List},
+			{path: '/profile',component: Profile}
+		];
+
+		const router = new VueRouter({
+			routes: rou
+		});
+
+		const app = new Vue({
+			router: router
+		}).$mount('#app');
+	</script>
+</html>

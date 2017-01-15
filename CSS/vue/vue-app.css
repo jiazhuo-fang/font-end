@@ -1,5 +1,6 @@
 body{
     position: relative;
+    overflow: hidden;
 }
 
 .title{
@@ -32,7 +33,7 @@ body{
     position: relative;
     height: 100%;
     overflow: hidden;
-    background: rgba(0,0,0,.9);
+    background: rgba(0,0,0,.78);
 }
 
 .curtain-upon{
@@ -75,7 +76,7 @@ body{
     z-index: 1;
 }
 
-svg{
+.crawn-svg{
     position: absolute;
     width: 96px;
     height: 96px;
@@ -93,7 +94,7 @@ svg{
     transition: all .5s ease;
 }
 
-svg>path{
+.crawn-svg>path{
     fill: #f8e81c;
 }
 
@@ -148,13 +149,37 @@ svg>path{
     }
 }
 
-nav{
+.nav{
     position: absolute;
     width: 100%;
     height: 50px;
     left: 0;
     bottom: 0;
     background: #f0f0f0;
+}
+
+.nav>ul{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 8px 2px rgba(180,19,199,.6) inset;
+}
+
+.nav li{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
+}
+
+.nav svg{
+    display: block;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    fill: mediumslateblue;
 }
 
 .to-up{

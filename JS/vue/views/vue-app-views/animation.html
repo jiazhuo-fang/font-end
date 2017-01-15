@@ -1,0 +1,31 @@
+<ul class="vue-usage-container" id="animation-body">
+    <li class="usage-list">
+        <div class="curtain-upon" v-bind:class="{'to-up': curtainUponStatus}">
+            <div v-bind:class="{'opacity-show': contentShowStatus}">
+                <img src="http://f1.diyitui.com/a4/93/11/af/9b/70/72/f1/06/0e/f0/45/0d/63/e1/5f.jpg">
+            </div>
+        </div>
+        <div class="btn" v-on:click="AnimationClick()" v-text="value"></div>
+        <div>
+            <svg t="1482483599917" 
+                 class="icon crawn-svg" 
+                 v-bind:class="{'opacity-show': showStatus,'go-up': goUpStatus}"
+                 style="" 
+                 viewBox="0 0 1024 1024" 
+                 version="1.1" 
+                 xmlns="http://www.w3.org/2000/svg" 
+                 p-id="3839" 
+                 xmlns:xlink="http://www.w3.org/1999/xlink" 
+                 width="200" 
+                 height="200">
+                 <defs>
+                     <style type="text/css"></style>
+                </defs>
+                <path d="M647.235 542.238l-124.416-218.693c-4.833-8.506-17.1-8.475-21.901 0.054l-122.8 218.487c-3.468 6.189-11.367 8.278-17.447 4.618l-177.449-106.773c-9.959-5.993-22.031 3.577-18.466 14.64l126.863 393.932c1.679 5.202 6.513 8.734 11.974 8.734l418.195 0.054c5.461 0 10.294-3.533 11.974-8.723l126.863-393.943c3.554-11.065-8.507-20.622-18.466-14.64l-177.513 106.817c-6.046 3.642-13.915 1.583-17.414-4.562z" p-id="3840"></path>
+                <path v-bind:class="{'second-path': animationStatus}" d="M556.038 209.397c0 23.945-19.406 43.351-43.342 43.351s-43.35-19.406-43.35-43.351c0-23.935 19.417-43.342 43.35-43.342 23.935 0 43.342 19.406 43.342 43.342z" p-id="3841"></path>
+                <path v-bind:class="{'third-path': animationStatus}" d="M965.278 344.443c0 23.945-19.408 43.351-43.346 43.351-23.939 0-43.347-19.406-43.347-43.351 0-23.935 19.408-43.342 43.347-43.342 23.938 0 43.346 19.406 43.346 43.342z" p-id="3842"></path>
+                <path v-bind:class="{'first-path': animationStatus}" d="M145.414 344.443c0 23.945-19.408 43.351-43.346 43.351-23.947 0-43.346-19.406-43.346-43.351 0-23.935 19.399-43.342 43.346-43.342 23.938 0 43.346 19.406 43.346 43.342z" p-id="3843"></path>
+            </svg>
+        </div>
+    </li>
+</ul>
