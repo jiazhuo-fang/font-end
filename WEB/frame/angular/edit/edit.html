@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="editApp">
+	<head>
+		<meta charset="utf-8">
+		<title>edit tool</title>
+		<link rel="stylesheet" href="/CSS/public.css">
+		<link rel="stylesheet" href="/CSS/angular/edit/edit.css">
+	</head>
+	<body class="flex edit-body" ng-controller="EditController as etCtrl">
+		<div class="edit-dev-container">
+			<device-size></device-size>
+			<edit-tools></edit-tools>
+			<edit-content></edit-content>
+		</div>
+		<div class="flex edit-content-container edit-show-container">
+			<edit-show></edit-show>
+		</div>
+		<edit-area></edit-area>
+	</body>
+	<script src="/bower_components/angular/angular.min.js"></script>
+	<script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script src="/JS/angular/edit/edit.js"></script>
+	<script src="/JS/angular/edit/service/service.js"></script>
+	<script src="/JS/angular/edit/directive/directive.js"></script>
+	<script src="/js/angular/edit/controller/edit.controller.js"></script>
+</html>

@@ -1,0 +1,411 @@
+
+*{
+	outline: none;
+}
+
+.flex{
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.display-none{
+	display: none;
+}
+
+.flex-column{
+	-webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.edit-body{
+	height: 100%;
+}
+
+.edit-dev-container,
+.edit-show-container{
+	width: 50%;
+	height: 100%;
+}
+
+.edit-show-container{
+	border-left: 1px solid #aaa;
+	box-sizing: border-box;
+	background: #f0f0f0;
+}
+
+/*device选择部分*/
+.edit-device-choice{
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	background: -webkit-linear-gradient(top,#e1e1e1,#fafafa);
+	color: #666;
+}
+
+.edit-responsive{
+	position: relative;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.edit-responsive>span{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.device-size-container{
+	position: absolute;
+	width: 100%;
+	top: 35px;
+	border: 1px solid #f0f0f0;
+	background: #fff;
+	z-index: 5;
+}
+
+.device-size{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+
+.show-size{
+	width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #fafafa;
+    color: #999;
+}
+
+
+/*工具条部分样式*/
+.edit-tools-container{
+	height: 50px;
+	margin: 20px auto;
+	align-items: center;
+	box-shadow: 0 0 1px rgba(0,0,0,.5); 
+}
+
+.edit-tool{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	margin-left: 20px;
+	padding: 5px;
+}
+
+.font-family[choiced="true"],
+.font-size[choiced="true"],
+.font-weight[choiced="true"],
+.font-italic[choiced="true"],
+.font-underline[choiced="true"],
+.font-left[choiced="true"],
+.font-center[choiced="true"],
+.font-right[choiced="true"]{
+	background: #f0f0f0;
+}
+
+.edit-tool>svg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.edit-select-font-family{
+	position: absolute;
+    left: -10px;
+    top: 32px;
+    height: 32px;
+    width: 150px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+	font-size: 18px;
+	color: #666;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.edit-select-font-family>option{
+	height: 32px;
+	padding-left: 10px;
+	font-size: 18px;
+	color: #666;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.edit-choice-color{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.font-family-path[choiced="true"],
+.font-size-path[choiced="true"],
+.font-weight-path[choiced="true"],
+.font-italic-path[choiced="true"],
+.font-underline-path[choiced="true"],
+.font-left-path[choiced="true"],
+.font-center-path[choiced="true"],
+.font-right-path[choiced="true"]{
+	fill: #1296db;
+}
+
+.font-size-container{
+	position: absolute;
+    width: 80px;
+    height: 30px;
+    top: 40px;
+    right: -25px;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+    box-sizing: border-box;
+    background: #F0F0F0;
+}
+
+.edit-plus,
+.edit-add{
+	font-size: 24px;
+	color: #1296db;
+	cursor: pointer;
+}
+
+.edit-show-font-size{
+	color: #888;
+}
+
+
+/*编辑区的样式*/
+.edit-content-container{
+	position: relative;
+	height: calc(100% - 140px);
+	justify-content: center;
+	align-items: center;
+}
+
+.edit-process-choice-contianer{
+	position: absolute;
+	width: 40px;
+	height: 150px;
+	flex-direction: column;
+	justify-content: space-between;
+	top: 10px;
+	right: 10px;
+}
+
+.edit-process-choice{
+	width: 40px;
+	height: 40px;
+}
+
+.edit-btn[clicked="false"],
+.edit-modify[clicked="false"],
+.edit-add[clicked="false"]{
+	fill: #1296db;
+}
+
+.edit-btn[clicked="true"],
+.edit-modify[clicked="true"],
+.edit-add[clicked="true"]{
+	fill: #f02b5b;
+}
+
+.edit-process-choice>svg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.edit-area-container{
+	border: 1px solid #aaa;
+	box-shadow: 0 0 3px #f0f0f0;
+}
+
+.edit-img-container{
+	position: relative;
+	width: 100%;
+	height: 30%;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	font-size: 24px;
+	color: #aaa;
+	text-shadow: 0 0 2px #ccc;
+	cursor: pointer;
+}
+
+.edit-img-container>img{
+	position: absolute;
+	display: block;
+	width: 300px;
+	height: 200px;    
+	top: 50%;
+    left: 50%;
+    margin: -100px -150px;
+	z-index: 1;
+}
+
+.edit-text-area-container{
+	height: 70%;
+	overflow: auto;
+}
+
+.edit-content-show-area{
+	flex-direction: column;
+}
+
+.add-image-container{
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.add-image-container>img{
+	width: 100%;
+}
+
+.add-content-sign{
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-content-sign>svg{
+	display: block;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+
+
+
+
+
+/*呈现区域*/
+.edit-show-container{
+	height: 100%;
+}
+
+.edit-mobile-show{
+	background: #fff;
+}
+
+.edit-mobile-show img{
+	display: block;
+	width: 100%;
+}
+
+
+
+
+/* 文字编辑区 */
+.edit-text-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0,0,0,.3);
+	z-index: -10;
+	opacity: 0;
+	transition: opacity .2s ease;
+}
+
+.edit-text-overlay[show="true"]{
+	z-index: 10;
+	opacity: 1;
+}
+
+.edit-close-btn{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.edit-choice-type{
+
+}
+
+.edit-choice-type>div{
+	margin: 0 20px;
+}
+
+.edit-text{
+	width: 600px;
+	height: 400px;
+	padding: 20px 10px;
+	font-size: 16px;
+	color: #888;
+	border-radius: 10px;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.edit-image-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 600px;
+	height: 400px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.edit-choice-image{
+	display: block;
+	margin: 20px 0;
+	padding: 8px 20px;
+	color: #888;
+	background: #e1e1e1;
+	cursor: pointer;
+}
+
+.show-edit-image-container{
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.show-edit-image-container>img{
+	display: block;
+	width: 100%;
+}
+
+.edit-ok-btn{
+	display: block;
+	margin-top: 30px;
+	font-size: 18px;
+	padding: 10px 20px;
+    color: #fff;
+    border-radius: 3px;
+    background: royalblue;
+    cursor: pointer;
+}
+
+

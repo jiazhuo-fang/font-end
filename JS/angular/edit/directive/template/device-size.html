@@ -1,0 +1,14 @@
+
+
+<div class="flex edit-device-choice">
+	<div class="edit-responsive">
+		<span ng-click="etCtrl.choiceDeviceSizeStatus=true;">Responsive</span>
+		<ul class="device-size-container" ng-show="etCtrl.choiceDeviceSizeStatus">
+			<li class="device-size"
+				ng-click="etCtrl.ChoiceSize($index)" 
+				ng-repeat="Size in etCtrl.deviceSize" 
+				ng-bind="Size.size"></li>
+		</ul>
+	</div>
+	<div class="show-size" ng-bind="etCtrl.showSize"></div>
+</div>

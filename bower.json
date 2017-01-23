@@ -21,6 +21,7 @@
     "angular": "^1.5.8",
     "bootstrap": "^3.3.7",
     "vue": "^2.1.7",
-    "vue-router": "^2.1.1"
+    "vue-router": "^2.1.1",
+    "ng-file-upload": "^12.2.13"
   }
 }
