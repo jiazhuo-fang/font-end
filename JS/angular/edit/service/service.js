@@ -27,14 +27,17 @@
 
 			service = (function(){
 				var service = {};
+				
+				//基本样式
 				var fontFamily = '';
-				var fontColor = '#000';
-				var fontSize = 16;
-				var fontWeight = '';
-				var fontStyle = '';
-				var textAlign = '';
-				var textDecoration = '';
+				var fontColor = '';
+				var fontSize = -1;
+				var fontWeight = false;
+				var fontStyle = false;
+				var textAlign = 'inherit';
+				var textDecoration = false;
 
+				//查询、修改样式的值
 				service.GetFontfamily = function(){
 					return fontFamily;
 				};
@@ -90,6 +93,30 @@
 				service.SetTextdecoration = function(value){
 					textDecoration = value;
 				};
+
+
+				//全局状态设置
+				var insertLocalImageSrc = '';
+				var clearStyleStatus = false;
+
+
+				//封装全局变量的方法
+
+				service.SetInsertLocalImageSrc = function(src){
+					insertLocalImageSrc = src;
+				};
+
+				service.GetInsertLocalImageSrc = function(){
+					return insertLocalImageSrc;
+				};
+
+				service.SetClearStyleStatus = function(value){
+					clearStyleStatus = value;
+				}
+
+				service.GetClearStyleStatus = function(){
+					return clearStyleStatus;
+				}
 
 
 				return service;

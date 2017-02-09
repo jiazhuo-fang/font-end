@@ -1,52 +1,6 @@
 (function(){
 	'use strict';
 
-	function AppendElement(element,params,PublicParams){
-		var addElement = null;
-		if(params.type === 'title'){
-			addElement = document.createElement('h3');
-			angular
-				.element(addElement)
-				.addClass(params.type)
-				.html(params.content);
-		}
-		else if(params.type === 'page'){
-			addElement = document.createElement('div');
-			angular
-				.element(addElement)
-				.addClass(params.type);
-		}
-		else if(params.type === 'image'){
-			//console.log('image :',params.content);
-			addElement = document.createElement('div');
-			var imageDom = angular.copy(params.content[0]);
-			angular
-				.element(addElement)
-				.append(imageDom);
-		}
-		else{
-			alert('请选择类型(标题、段落、图片)');
-		}
-		if(params.type === 'title' || params.type === 'page'){
-			angular
-				.element(addElement)
-				.css({
-					'font-family': PublicParams.GetFontfamily(),
-					'font-size': PublicParams.GetFontsize(),
-					'color': PublicParams.GetFontcolor(),
-					'font-weight': PublicParams.GetFontweight(),
-					'font-style': PublicParams.GetFontstyle(),
-					'text-decoration': PublicParams.GetTextdecoration(),
-					'text-align': PublicParams.GetTextalign()
-				});
-		}
-		if(addElement){
-			angular
-				.element(element)
-				.append(addElement);
-		}
-	}
-
 	angular
 		.module('editApp')
 
@@ -108,7 +62,7 @@
 
 			};
 
-			function EditToolsController($scope,PublicParams){
+			function EditToolsController($rootScope,$scope,PublicParams){
 				var vm = this;
 
 				//状态量初始化
@@ -144,19 +98,19 @@
 					else{
 						vm.fontFamilyChoiceStatus = true;
 					}
-				}
+				};
 
 				vm.fontValue = 7;
 				vm.ChangeFontValue = function(index){
 					PublicParams.SetFontfamily(vm.fontFamily[index].value);
-				}
+				};
 
 				//颜色读取
 				$scope.color = '#000000';
 				vm.ChoiceColor = function(value){
 					$scope.color = value;
 					PublicParams.SetFontcolor(value);
-				}
+				};
 
 				$scope.fontSize = PublicParams.GetFontsize();
 				vm.ChangeFontSize = function(){
@@ -168,55 +122,58 @@
 						vm.fontSizeChoicedStatus = true;
 						vm.fontSizeSettleShowStatus = true;
 					}
-				}
+				};
 
 				vm.FontsizeDecrease = function(){
-					if($scope.fontSize >= 10){
-						PublicParams.SetFontsize(-- $scope.fontSize + 'px');
+					if($scope.fontSize > 1){
+						PublicParams.SetFontsize(-- $scope.fontSize);
 					}
-				}
+				};
 
 				vm.FontsizeIncrease = function(){
-					if($scope.fontSize <= 200){
-						PublicParams.SetFontsize(++ $scope.fontSize + 'px');
+					if($scope.fontSize < 1){
+						$scope.fontSize = 0;
 					}
-				}
+					if($scope.fontSize < 7){
+						PublicParams.SetFontsize(++ $scope.fontSize);
+					}
+				};
 
 				//文字的粗细方法
 				vm.ChangeFontWeight = function(){
 					if(vm.fontWeightChoicedStatus){ 
 						vm.fontWeightChoicedStatus=false;
-						PublicParams.SetFontweight('normal');
+						PublicParams.SetFontweight(false);
 					}
 					else{
 						vm.fontWeightChoicedStatus=true;
-						PublicParams.SetFontweight('700');
+						PublicParams.SetFontweight(true);
 					}
-				}
+				};
 
 				//文字的样式方法
 				vm.ChangeFontStyle = function(){
 					if(vm.fontItalicChoicedStatus){
 						vm.fontItalicChoicedStatus=false;
-						PublicParams.SetFontstyle('normal');
+						PublicParams.SetFontstyle(false);
 					} 
 					else{
 						vm.fontItalicChoicedStatus=true;
-						PublicParams.SetFontstyle('italic');
+						PublicParams.SetFontstyle(true);
 					}
-				}
+				};
 
 				//字体添加下滑线方法
 				vm.ChangeFontUnderline = function(){
 					if(vm.fontUnderlineChoicedStatus){
 						vm.fontUnderlineChoicedStatus=false;
-						PublicParams.SetTextdecoration('inherit');
+						PublicParams.SetTextdecoration(false);
 					} 
 					else{
 						vm.fontUnderlineChoicedStatus=true;
-						PublicParams.SetTextdecoration('underline');
+						PublicParams.SetTextdecoration(true);
 					}
-				}
+				};
 
 				//字体左对齐方法
 				vm.ChangeFontLeft = function(){
@@ -228,9 +185,9 @@
 						vm.fontCenterChoicedStatus = false;
 						vm.fontRightChoicedStatus=false;
 						vm.fontLeftChoicedStatus=true;
-						PublicParams.SetTextalign('left');
+						PublicParams.SetTextalign('JustifyLeft');
 					}
-				}
+				};
 
 				//字体居中对齐方法
 				vm.ChangeFontCenter = function(){
@@ -242,9 +199,9 @@
 						vm.fontLeftChoicedStatus = false;
 						vm.fontRightChoicedStatus=false;
 						vm.fontCenterChoicedStatus=true;
-						PublicParams.SetTextalign('center');
+						PublicParams.SetTextalign('JustifyCenter');
 					}
-				}
+				};
 
 				vm.ChangeFontRight = function(){
 					if(vm.fontRightChoicedStatus){
@@ -255,9 +212,34 @@
 						vm.fontLeftChoicedStatus = false;
 						vm.fontCenterChoicedStatus = false;
 						vm.fontRightChoicedStatus=true;
-						PublicParams.SetTextalign('right');
+						PublicParams.SetTextalign('JustifyRight');
+					}
+				};
+
+				vm.UndoAction = function(){
+					document
+						.execCommand('undo');
+				}
+
+				vm.RemoveStyle = function(){
+					if(PublicParams.GetClearStyleStatus()){
+						vm.clearStyleStatus = false;
+						PublicParams.SetClearStyleStatus(false);
+					}
+					else{
+						vm.clearStyleStatus = true;
+						PublicParams.SetClearStyleStatus(true);
 					}
 				}
+
+				vm.AddImage = function(){
+					$rootScope
+						.showImageOverlayStatus = true;
+				};
+
+				vm.AddVideo = function(){
+
+				};
 			};
 		})
 
@@ -277,19 +259,15 @@
 			return directive;
 
 			function DomOperate(scope){
-				scope.$on('broadcast.edit.overlay.finish',function(e,params){
-					AppendElement(document
-									.querySelector('#editContent'),params,PublicParams);
-				})
+				scope.$on('broadcast.edit.overlay.finish',function(){
+
+				});
 			};
 
-			function EditContentController($rootScope,$scope){
+			function EditContentController($scope,$window){
 				var vm = this;
 
 				//状态设置
-				vm.editStatus = false;
-				vm.modifyStatus = false;
-				vm.addStatus = false;
 
 				//数据初始化
 				vm.deviceSize = [
@@ -313,35 +291,73 @@
 						}
 					});
 
-				vm.Upload = function(file){
-					if(file){
-						vm.imageFile = file;
-						vm.showImageStatus = true;
-					}
-				}
+				// vm.Upload = function(file){
+				// 	if(file){
+				// 		vm.imageFile = file;
+				// 		vm.showImageStatus = true;
+				// 	}
+				// }
 
-				vm.ChoiceEditPattern = function(){
-					vm.editStatus ? vm.editStatus = false : vm.editStatus = true;
-					vm.modifyStatus = false;
-					vm.addStatus = false;
-				}
+				//回车换行包裹换行元素
+				document
+					.querySelector('#editContent')
+					.addEventListener('keydown',function(e){
+						if(e.keyCode === 13){
+							document
+								.execCommand('insertBrOnReturn',false,true);
+						}
+					});
 
-				vm.ModifyEditPattern = function(){
-					vm.modifyStatus ? vm.modifyStatus = false : vm.modifyStatus = true;
-					vm.editStatus = false;
-					vm.addStatus = false;
-				}
+				//行内对于字体的操作
+				document
+					.querySelector('#editContent')
+					.addEventListener('mouseup',function(e){
+						var sel = $window.getSelection();
+						if(sel.anchorOffset !== sel.focusOffset){
+							if(PublicParams.GetClearStyleStatus()){
+								document
+									.execCommand('removeFormat');
+							}
+							else{
+								if(PublicParams.GetFontfamily()){
+									document
+										.execCommand('fontName',true,PublicParams.GetFontfamily());
+								}
+								if(PublicParams.GetFontcolor()){
+									document
+										.execCommand('foreColor',true,PublicParams.GetFontcolor());
+								}
+								if(PublicParams.GetFontsize() !== -1){
+									document
+										.execCommand('FontSize',true,PublicParams.GetFontsize());
+								}
+								if(PublicParams.GetFontweight()){
+									document
+										.execCommand('Bold'); 
+								}
+								if(PublicParams.GetFontstyle()){
+									document
+										.execCommand('Italic');
+								}
+								if(PublicParams.GetTextdecoration()){
+									document
+										.execCommand('underline');
+								}
+								if(PublicParams.GetTextalign() !== 'inherit'){
+									document
+										.execCommand(PublicParams.GetTextalign());
+								}
+							}
+						}
+						else{
+							if(PublicParams.GetInsertLocalImageSrc()){
+								document
+									.execCommand('insertImage',true,PublicParams.GetInsertLocalImageSrc());
+								PublicParams.SetInsertLocalImageSrc('');
+							}
+						}
+					});
 
-				vm.AddEditPattern = function(){
-					vm.addStatus ? vm.addStatus = false : vm.addStatus = true;
-					vm.editStatus = false;
-					vm.modifyStatus = false;
-				}
-
-				vm.AddContentSign = function(){
-					$scope
-						.$emit('broadcast.show.edit.content');
-				}
 			}
 		})
 
@@ -350,6 +366,7 @@
 			var directive = {
 				strict: 'E',
 				scope: {
+					
 				},
 				templateUrl: '/JS/angular/edit/directive/template/edit-show.html',
 				link: DomOperate,
@@ -361,13 +378,6 @@
 
 			function DomOperate(scope,element){
 
-				//
-
-				//edit-area区域提交数据，需要呈现
-				scope.$on('broadcast.show.add.content',function(e,params){
-					AppendElement(document
-									.querySelector('#showContent'),params,PublicParams);
-				})
 			};
 
 			function EditShowController($scope){
@@ -398,7 +408,7 @@
 
 
 		//增添，修改模块
-		.directive('editArea',function(){
+		.directive('editArea',function(PublicParams){
 			var directive = {
 				restrict: 'E',
 				scope: {
@@ -416,7 +426,7 @@
 
 			};
 
-			function EditAreaController($scope){
+			function EditAreaController($rootScope,$scope){
 				var vm = this;
 
 
@@ -426,25 +436,16 @@
 				vm.editPageStatus = false;
 				vm.editImageStatus = false;
 
-				$scope
-					.$on('broadcast.show.edit.overlay',function(){
-						vm.textEditOverlay = true;
-					})
+				$rootScope
+					.$watch('showImageOverlayStatus',function(value){
+						if(value){
+							vm.imageEditOverlay = true;
+						}
+					});
 
-
-				vm.EditTitleStatusChange = function(){
-					vm.editPageStatus = false;
-					vm.editImageStatus = false;
-				}
-
-				vm.EditPageStatusChange = function(){
-					vm.editTitleStatus = false;
-					vm.editImageStatus = false;
-				}
-
-				vm.EditImageStatusChange = function(){
-					vm.editTitleStatus = false;
-					vm.editPageStatus = false;
+				vm.CloseImageEditOverlay = function(){
+					vm.imageEditOverlay = false; 
+					$rootScope.showImageOverlayStatus=false;
 				}
 
 				vm.Upload = function(file){
@@ -455,29 +456,14 @@
 
 				vm.FinishEdit = function(){
 					vm.textEditOverlay = false;
-					if(vm.editContent || vm.imageFile){
-						var params = {};
-						if(vm.editTitleStatus){
-							params.type = 'title';
-							params.content = vm.editContent;
-							vm.editTitleStatus = false;
-						}
-						else if(vm.editPageStatus){
-							params.type = 'page';
-							params.content = vm.editContent;
-							vm.editPageStatus = false;
-						}
-						else if(vm.editImageStatus){
-							params.type = 'image';
-							params.content = angular
-												.element(document
-													.querySelector('#imageDom'));
-							vm.editImageStatus = false;
-						}
-						else{
-							params.content = vm.editContent;
-						}
-						$scope.$emit('broadcast.edit.content.finish',params);
+					if(vm.imageFile){
+						var content = angular
+										.element(document
+											.querySelector('#imageDom'));
+
+						PublicParams.SetInsertLocalImageSrc(content.attr('src'));
+						vm.imageEditOverlay = false;
+						$rootScope.showImageOverlayStatus=false;
 					}
 				}
 			}

@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>execCommand-copy</title>
+	</head>
+	<body>
+		<p id="p" contenteditable="true">点击复制后在右边textarea CTRL+V看一下</p>
+		<input type="text" id="inputText" value="测试文本"/>
+		<input type="button" id="btn" value="复制"/>
+		<textarea rows="4"></textarea>
+		<script type="text/javascript">
+		    var btn = document.getElementById('btn');
+		    var inputText = document.getElementById('inputText');
+		    document
+		    	.querySelector('#p')
+		    	.addEventListener('mouseup',function(){
+			    	var sel = window.getSelection();
+			    	// document
+			    	// 	.querySelector('#p')
+			    	// 	.setSelectionRange(0,6);
+			    	document.execCommand('BackColor',true,'#f02b5b');
+			    	console.log(sel.anchorOffset,sel.focusOffset);
+			    	//sel.removeAllRanges();
+			    	// sel.collapse(document
+		    		// 				.querySelector('#p'),0);
+		    		//sel.collapseToEnd();//取消选取并将光标移到选取内容中的最后位置
+		    		//console.log(sel.containsNode(document.querySelector('body')));//判断选取内容是否包含在当前容器内
+		    		//sel.deleteFromDocument();//删除选中文字
+			    	console.log(sel);
+			    });
+			    
+		    // btn.addEventListener('click', function(){
+		    //     var currentFocus = document.activeElement;
+		    //     inputText.focus();
+		    //     inputText.setSelectionRange(0, inputText.value.length);
+		    //     document.execCommand('copy',true);
+		    //     currentFocus.focus();
+		    // });
+		</script>
+	</body>
+</html>

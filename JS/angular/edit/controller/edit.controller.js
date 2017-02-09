@@ -39,11 +39,10 @@
 			})
 
 		$scope
-			.$on('broadcast.edit.content.finish',function(e,params){
-				$scope
-					.$broadcast('broadcast.edit.overlay.finish',params);
-				$scope.$broadcast('broadcast.show.add.content',params)
-			})
+			.$on('broadcast.edit.content.finish',function(){
+				// $scope
+				// 	.$broadcast('broadcast.eidt.insert.image');
+			});
 		
 	}
 })()

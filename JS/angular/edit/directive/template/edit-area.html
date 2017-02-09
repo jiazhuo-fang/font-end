@@ -1,36 +1,9 @@
 
 
 
-<div class="flex edit-text-overlay" show="{{etCtrl.textEditOverlay}}">
-	<svg class="edit-close-btn" ng-click="etCtrl.textEditOverlay=false;" t="1484815081645" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3033" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M1021.566377 929.412371l-96.138115 93.588605L502.321452 616.805651 93.414775 1022.976999 0.499512 929.390392l420.723138-417.903891L0.499512 93.590603 93.414775-0.001998 502.347426 406.183337 925.428261 0.039961l96.138115 93.582611L586.255485 511.502486 1021.566377 929.412371z" p-id="3034" fill="#515151"></path></svg>
-	<div class="flex edit-choice-type">
-		<div>
-			<label for="title">标题</label>
-			<input type="radio" 
-					ng-value=true 
-					ng-model="etCtrl.editTitleStatus" 
-					ng-change="etCtrl.EditTitleStatusChange()"
-					name="choicetype" id="title">
-		</div>
-		<div>
-			<label for="page">段落</label>
-			<input type="radio" 
-					ng-value=true 
-					ng-model="etCtrl.editPageStatus" 
-					ng-change="etCtrl.EditPageStatusChange()"
-					name="choicetype" id="page">
-		</div>
-		<div>
-			<label for="photo">图片</label>
-			<input type="radio" 
-					ng-value=true 
-					ng-model="etCtrl.editImageStatus" 
-					ng-change="etCtrl.EditImageStatusChange()"
-					name="choicetype" id="photo">
-		</div>
-	</div>
-	<textarea ng-hide="etCtrl.editImageStatus" class="edit-text" ng-model="etCtrl.editContent"></textarea>
-	<div ng-show="etCtrl.editImageStatus" class="edit-image-container">
+<div class="flex edit-text-overlay" show="{{etCtrl.imageEditOverlay}}">
+	<svg class="edit-close-btn" ng-click="etCtrl.CloseImageEditOverlay()" t="1484815081645" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3033" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M1021.566377 929.412371l-96.138115 93.588605L502.321452 616.805651 93.414775 1022.976999 0.499512 929.390392l420.723138-417.903891L0.499512 93.590603 93.414775-0.001998 502.347426 406.183337 925.428261 0.039961l96.138115 93.582611L586.255485 511.502486 1021.566377 929.412371z" p-id="3034" fill="#515151"></path></svg>
+	<div class="edit-image-container">
 		<span ngf-select="etCtrl.Upload(file)"
 			  ng-model="file" 
 			  ngf-pattern="'image/*'" 

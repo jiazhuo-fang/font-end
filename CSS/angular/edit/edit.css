@@ -20,6 +20,15 @@
     flex-direction: column;
 }
 
+.can-edit-p{
+	width: 100%;
+	line-height: 24px;
+}
+
+.edit-active{
+	background: #aaa;
+}
+
 .edit-body{
 	height: 100%;
 }
@@ -91,16 +100,25 @@
 .edit-tools-container{
 	height: 50px;
 	margin: 20px auto;
+	padding: 0 10px;
 	align-items: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 	box-shadow: 0 0 1px rgba(0,0,0,.5); 
+	box-sizing: border-box;
 }
 
 .edit-tool{
 	position: relative;
-	width: 20px;
-	height: 20px;
-	margin-left: 20px;
-	padding: 5px;
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.edit-tool:first-child{
+	margin-left: 0;
 }
 
 .font-family[choiced="true"],
@@ -110,8 +128,9 @@
 .font-underline[choiced="true"],
 .font-left[choiced="true"],
 .font-center[choiced="true"],
-.font-right[choiced="true"]{
-	background: #f0f0f0;
+.font-right[choiced="true"],
+.remove-style-btn[choiced="true"]{
+	background: #e1e1e1;
 }
 
 .edit-tool>svg{
@@ -163,7 +182,8 @@
 .font-underline-path[choiced="true"],
 .font-left-path[choiced="true"],
 .font-center-path[choiced="true"],
-.font-right-path[choiced="true"]{
+.font-right-path[choiced="true"],
+.remove-style-path[choiced="true"]{
 	fill: #1296db;
 }
 
@@ -235,8 +255,31 @@
 }
 
 .edit-area-container{
+	position: relative;
+	padding: 10px;
 	border: 1px solid #aaa;
 	box-shadow: 0 0 3px #f0f0f0;
+	box-sizing: border-box;
+	cursor: text;
+}
+
+.edit-area-container img{
+	max-width: 100%;
+}
+
+.eidt-setting-tools{
+	position: absolute;
+	right: 5px;
+	bottom: 26px;
+}
+
+.eidt-setting-tools>li{
+	margin: 10px 0;
+	border: 1px solid #a0a0a0;
+	color: #666;
+	text-align: center;
+	box-sizing: border-box;
+	cursor: pointer;
 }
 
 .edit-img-container{
@@ -262,11 +305,6 @@
     left: 50%;
     margin: -100px -150px;
 	z-index: 1;
-}
-
-.edit-text-area-container{
-	height: 70%;
-	overflow: auto;
 }
 
 .edit-content-show-area{
@@ -296,6 +334,17 @@
 	cursor: pointer;
 }
 
+.add-image:hover,
+.add-video:hover,
+.revocation-btn:hover{
+	background: #e1e1e1;
+}
+
+.add-image:hover path,
+.add-video:hover path,
+.revocation-btn:hover path{
+	fill: #1296db;
+}
 
 
 
