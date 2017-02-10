@@ -98,6 +98,7 @@
 				//全局状态设置
 				var insertLocalImageSrc = '';
 				var clearStyleStatus = false;
+				var showMobileModelStatus = false;
 
 
 				//封装全局变量的方法
@@ -116,6 +117,14 @@
 
 				service.GetClearStyleStatus = function(){
 					return clearStyleStatus;
+				}
+
+				service.SetShowMobileModelStatus = function(value){
+					showMobileModelStatus = value;
+				}
+
+				service.GetShowMobileModelStatus = function(){
+					return showMobileModelStatus;
 				}
 
 

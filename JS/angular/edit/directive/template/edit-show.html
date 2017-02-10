@@ -1,3 +1,8 @@
 
 
-<div class="edit-mobile-show" id="showContent" ng-style="etCtrl.editSize"></div>
+<div class="mobile-show-container" ng-show="etCtrl.showMobileModel" ng-click="etCtrl.HideMobileModel()">
+    <div class="flex">
+        <div class="mobile-bg-container"></div>
+        <div class="edit-mobile-show" id="showContent" ng-style="etCtrl.editSize"></div>
+    </div>
+</div>

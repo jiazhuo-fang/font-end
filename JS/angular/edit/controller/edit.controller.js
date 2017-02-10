@@ -43,6 +43,11 @@
 				// $scope
 				// 	.$broadcast('broadcast.eidt.insert.image');
 			});
-		
+
+		$scope
+			.$on('broadcast.show.mobile.model.content',function(){
+				$scope
+					.$broadcast('broadcast.show.mobile.model');
+			});
 	}
 })()

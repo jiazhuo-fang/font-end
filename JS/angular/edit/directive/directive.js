@@ -244,7 +244,7 @@
 		})
 
 		//用户编辑区
-		.directive('editContent',function(PublicParams){
+		.directive('editContent',function($window,PublicParams,$timeout){
 			var directive = {
 				strict: 'E',
 				scope: {
@@ -258,45 +258,7 @@
 
 			return directive;
 
-			function DomOperate(scope){
-				scope.$on('broadcast.edit.overlay.finish',function(){
-
-				});
-			};
-
-			function EditContentController($scope,$window){
-				var vm = this;
-
-				//状态设置
-
-				//数据初始化
-				vm.deviceSize = [
-					{ID: 0, size: '414x736'},
-					{ID: 1, size: '375x667'},
-					{ID: 2, size: '360x640'},
-					{ID: 3, size: '320x568'}
-				];
-
-				vm.editSize = {
-					width: vm.deviceSize[0].size.split('x')[0] + 'px',
-					height: vm.deviceSize[0].size.split('x')[1] + 'px',
-				};
-
-				//屏幕大小响应
-				$scope
-					.$on('broadcast.get.device.size',function(e,index){
-						vm.editSize = {
-							width: vm.deviceSize[index].size.split('x')[0] + 'px',
-							height: vm.deviceSize[index].size.split('x')[1] + 'px',
-						}
-					});
-
-				// vm.Upload = function(file){
-				// 	if(file){
-				// 		vm.imageFile = file;
-				// 		vm.showImageStatus = true;
-				// 	}
-				// }
+			function DomOperate(scope,element){
 
 				//回车换行包裹换行元素
 				document
@@ -358,6 +320,82 @@
 						}
 					});
 
+				document
+					.querySelector('#clearEditBtn')
+					.addEventListener('click',function(){
+						if(document
+							.querySelector('#editContent')
+							.innerHTML){
+							if($window.confirm('你确定要清除编辑区中的内容吗？')){
+								document
+									.querySelector('#editContent')
+									.innerHTML = '';
+							}
+						}
+						else{
+							alert('已经情况完毕！');
+						}
+					});
+
+				
+				//在手机模型中显示效果
+				document
+					.querySelector('#mobileShowBtn')
+					.addEventListener('click',function(){
+						//将编辑区的html复制到显示区
+						document
+							.querySelector('#showContent')
+							.innerHTML = document
+											.querySelector('#editContent')
+											.innerHTML;
+						//
+						if(! PublicParams.GetShowMobileModelStatus()){
+							PublicParams
+								.SetShowMobileModelStatus(true);
+							scope
+								.$emit('broadcast.show.mobile.model.content');
+						}
+
+					});
+			};
+
+			function EditContentController($scope){
+				var vm = this;
+
+				//状态设置
+
+				//数据初始化
+				vm.deviceSize = [
+					{ID: 0, size: '414x736'},
+					{ID: 1, size: '375x667'},
+					{ID: 2, size: '360x640'},
+					{ID: 3, size: '320x568'}
+				];
+
+				vm.editSize = {
+					width: vm.deviceSize[0].size.split('x')[0] + 'px',
+					height: vm.deviceSize[0].size.split('x')[1] + 'px',
+				};
+
+				//屏幕大小响应
+				$scope
+					.$on('broadcast.get.device.size',function(e,index){
+						vm.editSize = {
+							width: vm.deviceSize[index].size.split('x')[0] + 'px',
+							height: vm.deviceSize[index].size.split('x')[1] + 'px',
+						}
+					});
+
+				// vm.Upload = function(file){
+				// 	if(file){
+				// 		vm.imageFile = file;
+				// 		vm.showImageStatus = true;
+				// 	}
+				// }
+
+				
+
+
 			}
 		})
 
@@ -403,6 +441,20 @@
 							height: vm.deviceSize[index].size.split('x')[1] + 'px',
 						}
 					});
+
+				//显示编辑内容并在手机模型中展现
+				vm.showMobileModel = false;
+				$scope
+					.$on('broadcast.show.mobile.model',function(){
+						vm.showMobileModel = true;
+					});
+
+				//隐藏手机模型蒙层
+				vm.HideMobileModel = function(){
+					vm.showMobileModel = false;
+					PublicParams
+						.SetShowMobileModelStatus(false);
+				}
 			};
 		})
 
