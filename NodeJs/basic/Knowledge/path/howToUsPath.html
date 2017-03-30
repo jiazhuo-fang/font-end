@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Introduce Path</title>
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h1>path 模块介绍</h1>
+			</div>
+			<div class="panel-body">
+				<div class="alert alert-success" role="alert">
+					path 模块提供了一个工作在文件以及目录路径上的工具，但在使用之前要声明：
+					<h4 class="label label-info">var path = require('path');</h4>
+				</div>
+				<h3 class="alert alert-warning" role="alert">windows VS. POSIX</h3>
+				<div class="alert alert-default" role="alert">
+					path 模块在node程序启动的时候就默认调用模块path，尤其是在window平台上面，它会采用windows使用path的风格。
+					例如：basename()在不同平台上调用的效果是不一样的
+					<pre>
+						path.basename('C:\\temp\\myFile.html');
+						//同样的代码在可移植性的系统中跟windows系统中得出的结果是不一样的
+						//windows: 'myFile.html'
+						//POSIX: 'C:\\temp\\myFile.html'
+					</pre>
+					为了达到一致性，当操作对象是一个windows型的路径方式统一使用path.win32(any operating system);
+					当操作对象是一个POSIX型的路径方式时，统一使用path.posix:
+					<pre>
+						path.win32.basename('C:\\temp\\myFile.html');
+						//无论什么平台得出的结果都是: 'myFile.html'
+						path.posix.basename('/temp/myFile.html');
+						//无论是在什么平台上得到的结果均为: 'myFile.html'
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.basename(path[,ext])</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>参数介绍</h4>
+					<p>path: &lt;string&gt;</p>
+					<p>ext: &lt;string&gt; 文件名后缀</p>
+					<h4>代码演示:</h4>
+					<pre>
+						path.basename('/foo/bar/baz/quux.html');
+						//返回的结果: quux.html
+						path.basename('/foo/bar/baz/quux.html','.html');
+						//返回的结果: quux
+					</pre>
+					如果上面的参数不是string型的时候，会抛错: <a href="https://nodejs.org/dist/latest-v6.x/docs/api/errors.html#errors_class_typeerror" class="alert-link" target="_blank">TypeError</a>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.delimiter</h3>
+				<div class="alert alert-default" role="alert">
+					path分隔符在不同平台体现是不一样的（Windows: ';',POSIX: ':'）
+					<h4>代码演示:</h4>
+					<pre>
+						console.log(process.env.PATH);
+						//注：process.env.PATH 得出的结果是系统环境变量中的系统路径
+						//Windows:  'C:\Windows\system32;C:\Windows;C:\Program Files\node\'
+						//POSIX: /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+						console.log(path.delimiter);
+						//Window: ';', POSIX: ':'
+						process.env.PATH.splice(path.delimiter);//分割字符串
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.dirname(path)</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>参数介绍</h4>
+					<p>path: &lt;string&gt;</p>
+					<h4>代码演示: </h4>
+					<pre>
+						path.dirname('C:\Users\JiaZhuo.Fang\Desktop\path.js');
+						//返回的结果: 'C:\Users\JiaZhuo.Fang\Desktop'
+						//该方法是用于获取当前路径下的文件或文件夹的路径
+					</pre>
+					如果上面的参数不是string型的时候，会抛错: <a href="https://nodejs.org/dist/latest-v6.x/docs/api/errors.html#errors_class_typeerror" class="alert-link" target="_blank">TypeError</a>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.extname(path)</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>函数介绍</h4>
+					<p>该方法是返回路径的拓展名(.html,.js等),及获取从最后一个.到这段字符串结束。但是如果没有.、字符串中的第一个字符是.均返回空字符串</p>
+					<h4>参数介绍</h4>
+					<p>path: &lt;string&gt;</p>
+					<h4>代码演示: </h4>
+					<pre>
+						path.extname('index.html');//返回 '.html'
+						path.extname('index.');//返回 '.'
+						path.extname('.index');//返回 ''
+						path.extname('index');//返回 ''
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.format(pathObject)</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>函数介绍</h4>
+					<p>该函数的功能就是将一个路径对象转换成一个字符串路径，相对的函数有path.parse()</p>
+					<h4>参数介绍</h4>
+					<p>pathObject: &lt;Objection&gt;</p>
+					<p>dir: &lt;string&gt;</p>
+					<p>root: &lt;string&gt;</p>
+					<p>base: &lt;string&gt;</p>
+					<p>name: &lt;string&gt;</p>
+					<p>ext: &lt;string&gt;</p>
+					<h4>规则: 当pathObject不为空时，注意对象中的属性的优先级问题</h4>
+					<p>当dir(pathObject.dir)属性存在时，整合路径字符串时直接忽略掉root(pathObject.root)属性</p>
+					<p>当base(pathObject.base)属性存在时，整合路径字符串时直接忽略掉ext(pathObject.ext)属性、name(pathObject.name)属性</p>
+					<h4>代码演示: </h4>
+					<pre>
+						path.format({
+							root: '/ignored',
+							dir: '/home/user/dir',
+							base: 'file.txt'
+						});
+						//返回的结果: '/home/user/dir/file.txt'; 即有dir属性存在直接忽略root属性
+
+						path.format({
+							root: '/',
+							base: 'file.txt',
+							ext: 'ignored'
+						});
+						//返回的结果: '/file.txt'; 即存在base属性,直接忽略ext属性、name属性
+
+						path.format({
+							root: '/',
+							name: 'file',
+							ext: '.txt'
+						});
+						//返回结果: '/file.txt';
+
+						//在 Windows 平台下展示
+						path.format({
+							dir: 'C:\\path\\dir',
+							base: 'file.txt'
+						});
+						//返回的结果: 'C:\\path\\dir\\file.txt'
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.isAbsolute(path)</h3>
+				<div class="alert alert-warning" role="alert">
+					<h4>函数介绍</h4>
+					<p>该函数的主要功能就是判断当前参数path是否为绝对路径,当path为空字符串时，直接返回false</p>
+					代码演示:
+					<pre>
+
+						//POSIX 环境下
+						path.isAbsolute('/foo/bar');//true
+						path.isAbsolute('/baz/..');//true
+						path.isAbsolute('qux/');//false
+						path.isAbsolute('.');//false
+
+						//Windows 环境下
+						path.isAbsolute('//server');//true
+						path.isAbsolute('\\\\server');//true
+						path.isAbsolute('C:/foo/..');//true
+						path.isAbsolute('bar\\baz');//false
+						path.isAbsolute('bar/baz');//false
+						path.isAbsolute('.');//false
+					</pre>
+					如果上面的参数不是string型的时候，会抛错: <a href="https://nodejs.org/dist/latest-v6.x/docs/api/errors.html#errors_class_typeerror" class="alert-link" target="_blank">TypeError</a>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.join([...paths])</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>函数介绍</h4>
+					<p>path.join()方法是拼接所有path变量，注意：其中空字符串、'.'均表示当前路径，'..'表示上级目录</p>
+					代码演示
+					<pre>
+						path.join('/foo','bar','baz/asdf','qwe','..');
+						//返回的结果: '/foo/bar/baz/asdf'
+						path.join('');
+						//返回的结果: '.'
+						path.join('.');
+						//返回的结果: '.'
+						path.join('/fws',{},'qwee');
+						//抛错
+					</pre>
+					如果上面的参数不是string型的时候，会抛错: <a href="https://nodejs.org/dist/latest-v6.x/docs/api/errors.html#errors_class_typeerror" class="alert-link" target="_blank">TypeError</a>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.normalize(path)</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>函数介绍</h4>
+					<p>将可精简的路径近一步解析，处理成最简模式(原则: 1、..返回上级目录路径；2、空字符串、.分别表示当前目录；3、路径中只有一个.时要么被忽略，要么作为路径中之一;等)</p>
+					代码演示
+					<pre>
+						//POSIX 环境下
+						path.normalize('fafwe/fwea///wew/..');
+						//返回的结果是: 'fafwe/fwea'
+
+						//Windows 环境下
+						path.normalize('fafwa\\waea\\\ffes\.');
+						//返回的结果是: 'fafwa\\waea\\ffes'
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert">path.parse(path)</h3>
+				<div class="alert alert-default" role="alert">
+					<h4>函数介绍</h4>
+					<p>将字符串路径处理成一个对象并返回(属性有: root、dir、base、exit、name)。相对的有： path.format(pathObj)</p>
+					代码演示
+					<pre>
+						path.parse('fasfwe/efafa/fw/file.text');
+						//返回的结果是: {
+						//			root: '/',
+						//			dir: 'fasfwe/efafa/fw',
+						//			base: 'file.text',
+						//			exit: '.text',
+						//			name: 'file'
+						//		}
+
+					</pre>
+				</div>
+				<h3 class="alert alert-warning" role="alert"></h3>
+			</div>
+			<div class="panel-footer"></div>
+		</div>
+	</body>
+</html>

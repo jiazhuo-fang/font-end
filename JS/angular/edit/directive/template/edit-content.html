@@ -1,4 +1,17 @@
 <div class="flex edit-content-container" ng-click="etCtrl.choiceDeviceSizeStatus=false;">
+	<div class="flex">
+		<div id="editContent"
+			contenteditable="true"
+			spellcheck="true"
+			class="edit-area-container"
+			ng-style="etCtrl.editSize"></div>
+		<ul class="eidt-setting-tools">
+			<li>插入产品</li>
+			<li>保存文章</li>
+			<li id="mobileShowBtn">手机预览</li>
+			<li id="clearEditBtn">清空编辑区</li>
+		</ul>
+	</div>
 	<!-- <div class="flex edit-img-container" 
 			ngf-select="etCtrl.Upload(file)"
 			ng-model="file" 
@@ -7,15 +20,4 @@
 		请上传符合规格的图片
 		<img ngf-src="etCtrl.imageFile" alt="">
 	</div> -->
-	<div id="editContent"
-		 contenteditable="true"
-		 spellcheck="true"
-		 class="edit-area-container"
-		 ng-style="etCtrl.editSize"></div>
-	<ul class="eidt-setting-tools">
-		<li>插入产品</li>
-		<li>保存文章</li>
-		<li id="mobileShowBtn">手机预览</li>
-		<li id="clearEditBtn">清空编辑区</li>
-	</ul>
 </div>

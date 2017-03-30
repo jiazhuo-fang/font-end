@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<style>
+			html,body,div,img,video{
+				margin: 0;
+				padding: 0;
+			}
+
+			.cover-img-container>video,
+			.cover-img-container>img{
+				display: block;
+				width: 100%;
+			}
+
+			.data-container{
+				position: absolute;
+				display: flex;
+				width: 100%;
+				height: 30px;
+				left: 0;
+				bottom: 0;
+				justify-content: space-between;
+				align-items: center;
+				color: #333;
+			}
+
+			.left-container{
+				display: flex;
+				height: 20px;
+				line-height: 22px;
+			}
+
+			.img-container{
+				width: 86px;
+				height: 20px;
+				margin: 0 10px;
+				overflow: hidden;
+			}
+
+			.img-container img{
+				width: 20px;
+				height: 20px;
+				margin-right: 6px;
+				border-radius: 20px;
+			}
+
+			.img-container img:nth-of-type(1){
+				margin-left: 6px;
+			}
+
+			.like-container{
+				padding: 0 8px;
+				font-size: 12px;
+			}
+
+			.right-container{
+				display: flex;
+				height: 20px;
+				align-items: center;
+			}
+
+			.right-container>img{
+				height: 14px;
+				margin-right: 10px;
+			}
+
+			.right-container>span{
+				margin: 4px 15px 0 0;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="coverImgContainer" class="" style="position: relative; height: 300px; background: #f02b5b;"></div>
+	</body>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		(function() {
+		    var currentEnv = window.location.hostname;
+		    var protocol = window.location.protocol;
+		    if(currentEnv == 's.imacco.me')  { 
+		      window.hostname= protocol + '//api.imacco.me/';
+		    } 
+		    else if(currentEnv == 's.imacco.com')  {
+		      window.hostname= protocol + '//v3.imacco.com/';
+		    } 
+		    else if(currentEnv == 'web.5imakeup.com')  {
+		      window.hostname =  protocol + '//publish.5imakeup.com/';
+		    } 
+		    else {
+		      window.hostname = protocol + '//api.5imakeup.com/';
+		    }
+
+		  	var url = window.hostname + '/MeiDeNi/Information/FetchInfoLikeAvatar';
+				var params = {
+						InfoID: 1902,//window.getQueryStringByKey('ID')
+				}
+
+				// var url = window.hostname + '/MeiDeNi/Activity/FetchActivityDetail';
+		  	// var params = {
+		  	// 		ActivityID: 47
+		  	// }
+
+				$.post(url,params,function(result){
+					if(typeof result === 'string'){
+						result = JSON.parse(result);
+					}
+					console.log(result);
+					if(result.IsSuccess){
+						var likeArr = result.Data.LikeAvatar || [];
+						var veiwCount = result.Data.ViewCount || 0;
+						var likeCount = (result.Data.LikeCount || 0) + '人喜欢';
+						var commentCount = result.Data.CommentCount>0 ? result.Data.CommentCount : '说说' ;
+						var imgArr = [];
+						var divDom = document.createElement('div');
+
+						for(var i=0;i<likeArr.length;i++){
+							imgArr.push(likeArr[i].Avatar);
+						};
+
+						var imgStr = '';
+
+						if(imgArr.length<=3){
+							for(i=0;i<likeArr.length;i++){
+								imgStr += '<img src="'+ imgArr[i] +'"/>'
+							}
+						}
+						else{
+							imgStr = '<img src="'+ imgArr[0] +'"/><img src="'+ imgArr[1] +'"/><img src="'+ imgArr[2] +'"/><img src="'+ imgArr[3] +'"/>';
+						}
+
+						$(divDom)
+							.addClass('data-container')
+							.prepend('<div class="left-container"><div class="img-container"><div id="imgContainer">'+ imgStr +'</div></div><div class="like-container">'+ likeCount +'</div></div><div class="right-container"><img src="read.png"/><span>'+ veiwCount +'</span><img src="comment.png"/><span>'+ commentCount +'</span></div>');
+
+						$('#coverImgContainer')
+							.append(divDom);
+						if(imgArr.length>3){
+							var k = 4;
+							window
+								.setInterval(function(){
+									$('#imgContainer')
+										.animate({
+											'margin-left': '-26px'
+										},300,function(){
+												$('#imgContainer>img:first')
+													.remove();
+												$(this)
+													.animate({
+														'margin-left': '0'
+													},0,function(){
+															if(k>=imgArr.length){
+																k=0;
+															}
+															$(this)
+																.append('<img src="'+imgArr[k++]+'"/>');
+														});
+												});
+								},1500);
+						}
+					}
+
+				});
+		})();
+
+
+			
+	</script>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<style>
+			html,body,div,ul,li,img{
+				margin: 0; padding: 0;
+			}
+
+			li{
+				list-style: none;
+			}
+
+			.cover-img-container{
+				position: relative; height: 300px; background: #f02b5b; overflow: hidden;
+			}
+
+			.products-container{
+				display: flex; position: absolute; height: 152px; top: 50%; left: calc(100% - 100px); margin-top: -76px; transition: transform .3s ease;
+			}
+
+			.product-num-introduce{
+				width: 60px; height: 80px; border: 2px solid #fff; box-sizing: border-box;
+			}
+
+			.product-num-introduce>li{
+				text-align: center; color: #fff;
+			}
+
+			.product-num-introduce>li:nth-of-type(1){
+				height: 45px; font: 24px/45px bolder;
+			}
+
+			.product-num-introduce>li:nth-of-type(2){
+				height: 20px; font-size: 12px; line-height: 20px;
+			}
+
+			.products-img-container{
+				width: 100vw; margin-left: 25px; overflow: scroll;
+			}
+
+			.products-img-container::-webkit-scrollbar{
+				display: none;
+			}
+
+			.products-img-container>div{
+				padding: 10px 15px 10px 20px; background: #fff; font-size: 0;
+			}
+
+			.products-img-container img{
+				width: 132px; height: 132px; margin-right: 15px; border: 1px solid #e1e1e1; box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cover-img-container" id="coverImgContainer"></div>
+	</body>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		'use strict';
+		(function(){
+			var currentEnv = window.location.hostname;
+		    var protocol = window.location.protocol;
+
+		    if(currentEnv == 's.imacco.me')  { 
+		      window.hostname= protocol + '//api.imacco.me/';
+		    } 
+		    else if(currentEnv == 's.imacco.com')  {
+		      window.hostname= protocol + '//v3.imacco.com/';
+		    } 
+		    else if(currentEnv == 'web.5imakeup.com')  {
+		      window.hostname =  protocol + '//publish.5imakeup.com/';
+		    } 
+		    else {
+		      window.hostname = protocol + '//api.5imakeup.com/';
+		    }
+
+		    // var url = window.hostname + '/MeiDeNi/Product/FetchTopProductDetail';
+		    // var params = {
+		    // 	TopProudctTopicID: window.getQueryStringByKey('ID')//'11'
+		    // }
+
+
+		    $.post(url,params,function(result){
+		    	result = typeof result === 'string' ? JSON.parse(result) : result;
+		    	var productArr = [];
+		    	if(result.IsSuccess){
+		    		console.log(result);
+
+		    		for(var i=0; i<result.Data[0].Products.length; i++){
+		    			productArr.push(result.Data[0].Products[i].ImageUrl);
+		    		}
+
+		    		var imgHtml = '';
+		    		for(i=0; i<productArr.length; i++){
+		    			imgHtml += '<img src="'+ productArr[i] +'" />'
+		    		}
+		    		var productsContainerStr = '<div class="products-container" id="productsContainer"><ul class="product-num-introduce" id="productsNumIntro"><li>'+ productArr.length +'</li><li>件单品</li></ul><div class="products-img-container" id="productsImgContainer"><div style="width: '+ (productArr.length*147) +'px">'+ imgHtml +'</div></div></div>';
+		    		$('#coverImgContainer')
+		    			.append(productsContainerStr);
+		    	};
+		    });
+
+		    function ScrollBack(){
+		    	var scrollLeft = 0;
+	    		var touchStartPosition = 0;
+
+		    	document
+		    		.querySelector('#productsImgContainer')
+		    		.addEventListener('touchstart',function(event){
+		    			var e = e || window.event;
+		    			touchStartPosition = e.changedTouches[0].clientX;
+		    		});
+
+		    	document
+		    		.querySelector('#productsImgContainer')
+		    		.addEventListener('touchend',function(event){
+		    			var e = e || window.event;
+		    			if(e.changedTouches[0].clientX > touchStartPosition && scrollLeft === 0){
+		    				$('#productsContainer')
+				    			.css({
+				    				'transform': 'translate(0)'
+				    			});
+		    			}
+		    		});
+
+		    	$('#productsImgContainer')
+		    		.scroll(function(){
+		    			scrollLeft = $(this).scrollLeft();
+		    		});
+		    }
+
+		    $('#coverImgContainer')
+		    	.on('touchstart', '#productsNumIntro', function(event){
+		    		var e = event || window.event;
+		    		e.preventDefault();
+		    		e.stopPropagation();
+
+		    		var touchStartPosition = e.touches[0].pageX;
+		    		var currentPosition = 0;
+		    		var touchmovePosition = 0;
+		    		var touchendPosition = 0;
+		    		document
+		    			.querySelector('#productsNumIntro')
+		    			.addEventListener('touchmove',function(event){
+		    				var e = event || window.event;
+		    				currentPosition = e.touches[0].pageX;
+		    				touchmovePosition = touchStartPosition - currentPosition;
+		    				$('#productsContainer')
+					    			.css({
+					    				'transform': 'translate(-' + touchmovePosition + 'px)'
+					    			});
+		    			});
+		    		document
+		    			.querySelector('#productsNumIntro')
+		    			.addEventListener('touchend',function(event){
+		    				var e = event || window.event;
+		    				touchendPosition = e.changedTouches[0].pageX;
+		    				if(touchendPosition > touchStartPosition){
+		    					$('#productsContainer')
+					    			.css({
+					    				'transform': 'translate(0)'
+					    			});
+		    				}
+		    				else{
+		    					$('#productsContainer')
+					    			.css({
+					    				'transform': 'translate(calc(15px - 100vw))'
+					    			});
+		    				}
+		    			});
+		    		ScrollBack();
+
+		    	});
+
+		    $('#coverImgContainer')
+		    	.on('click', '#productsNumIntro', function(){
+		    		$('#productsContainer')
+		    			.css({
+		    				'transform': 'translate(calc(15px - 100vw))'
+		    			});
+		    		ScrollBack();
+		    	});
+
+
+		    // $('#productsImgContainer')
+		    // 	.click(function(){
+		    // 		console.log(33);
+		    // 	});
+
+
+		})();
+	</script>
+</html>

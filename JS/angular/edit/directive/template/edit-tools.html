@@ -11,9 +11,109 @@
 				ng-options="font.ID as font.value for font in etCtrl.fontFamily"
 				class="edit-select-font-family"></select>
 	</li>
-	<li class="edit-tool">
+	<li class="edit-tool" ng-click="etCtrl.ChoiceColor()">
 		<svg t="1484791081202" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1109" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M764.31872 512c-36.7616 0-68.94848-32.25088-68.94848-68.94592 0-36.7616 32.18688-68.94336 68.94848-68.94336 36.77184 0 68.94592 32.18176 68.94592 68.94336C833.2672 479.74912 801.088 512 764.31872 512zM626.42944 328.11776c-36.77184 0-68.94848-32.18688-68.94848-68.94848s32.17664-68.94592 68.94848-68.94592c36.7616 0 68.9408 32.18688 68.9408 68.94592C695.37024 295.93088 663.19104 328.11776 626.42944 328.11776zM396.6208 328.11776c-36.83072 0-68.94592-32.18688-68.94592-68.94848s32.1152-68.94592 68.94592-68.94592c36.7616 0 68.94848 32.18688 68.94848 68.94592C465.56928 295.93088 433.3824 328.11776 396.6208 328.11776zM258.72384 512c-36.82304 0-68.9408-32.25088-68.9408-68.94592 0-36.7616 32.1152-68.94336 68.9408-68.94336 36.77184 0 68.94592 32.18176 68.94592 68.94336C327.67232 479.74912 295.49824 512 258.72384 512zM511.49056 98.3168c-229.80352 0-413.69088 183.87712-413.69088 413.68576s183.88736 413.6832 413.69088 413.6832c36.83072 0 68.94592-32.25088 68.94592-68.94848 0-18.44992-4.57472-32.25088-18.31168-45.98016-9.30048-13.80608-18.44992-27.61216-18.44992-45.92384 0-36.83072 32.18688-68.94592 68.94848-68.94592l82.74432 0c128.74496 0 229.8112-101.13536 229.8112-229.87008C925.17888 263.74912 741.36064 98.3168 511.49056 98.3168z" p-id="1110" fill="#d4237a"></path></svg>
-		<input class="edit-choice-color" ng-model="color" ng-change="etCtrl.ChoiceColor(color)" type="color">
+		<div class="edit-choice-color-contianer">
+			<p class="use-color-theme">最近使用过的颜色</p>
+			<div id="recentUseContainer" class="recent-use-color-box-container cut-off-rule">
+
+			</div>
+			<p class="use-color-theme">主题颜色</p>
+			<div id="themeColorBox" class="color-box-container cut-off-rule">
+				<div class="flex">
+					<div class="color-box" style="background-color: #ffffff;"></div>
+					<div class="color-box" style="background-color: #000000;"></div>
+					<div class="color-box" style="background-color: #eeece1;"></div>
+					<div class="color-box" style="background-color: #1f497d;"></div>
+					<div class="color-box" style="background-color: #4f81bd;"></div>
+					<div class="color-box" style="background-color: #c0504d;"></div>
+					<div class="color-box" style="background-color: #9bbb59;"></div>
+					<div class="color-box" style="background-color: #8064a2;"></div>
+					<div class="color-box" style="background-color: #4bacc6;"></div>
+					<div class="color-box" style="background-color: #f79646;"></div>
+				</div>
+				<div class="flex">
+					<div class="color-box" style="background-color: #f2f2f2;"></div>
+					<div class="color-box" style="background-color: #7f7f7f;"></div>
+					<div class="color-box" style="background-color: #ddd9c3;"></div>
+					<div class="color-box" style="background-color: #c6d9f0;"></div>
+					<div class="color-box" style="background-color: #dbe5f1;"></div>
+					<div class="color-box" style="background-color: #f2dcdb;"></div>
+					<div class="color-box" style="background-color: #ebf1dd;"></div>
+					<div class="color-box" style="background-color: #e5e0ec;"></div>
+					<div class="color-box" style="background-color: #dbeef3;"></div>
+					<div class="color-box" style="background-color: #fdeada;"></div>
+				</div>
+				<div class="flex">
+					<div class="color-box" style="background-color: #d8d8d8;"></div>
+					<div class="color-box" style="background-color: #595959;"></div>
+					<div class="color-box" style="background-color: #c4bd97;"></div>
+					<div class="color-box" style="background-color: #8db3e2;"></div>
+					<div class="color-box" style="background-color: #b8cce4;"></div>
+					<div class="color-box" style="background-color: #e5b9b7;"></div>
+					<div class="color-box" style="background-color: #d7e3bc;"></div>
+					<div class="color-box" style="background-color: #ccc1d9;"></div>
+					<div class="color-box" style="background-color: #b7dde8;"></div>
+					<div class="color-box" style="background-color: #fbd5b5;"></div>
+				</div>
+				<div class="flex">
+					<div class="color-box" style="background-color: #bfbfbf;"></div>
+					<div class="color-box" style="background-color: #3f3f3f;"></div>
+					<div class="color-box" style="background-color: #938953;"></div>
+					<div class="color-box" style="background-color: #548dd4;"></div>
+					<div class="color-box" style="background-color: #95b3d7;"></div>
+					<div class="color-box" style="background-color: #d99694;"></div>
+					<div class="color-box" style="background-color: #c3d69b;"></div>
+					<div class="color-box" style="background-color: #b2a2c7;"></div>
+					<div class="color-box" style="background-color: #92cddc;"></div>
+					<div class="color-box" style="background-color: #fac08f;"></div>
+				</div>
+				<div class="flex">
+					<div class="color-box" style="background-color: #a5a5a5;"></div>
+					<div class="color-box" style="background-color: #262626;"></div>
+					<div class="color-box" style="background-color: #494429;"></div>
+					<div class="color-box" style="background-color: #17365d;"></div>
+					<div class="color-box" style="background-color: #366092;"></div>
+					<div class="color-box" style="background-color: #953734;"></div>
+					<div class="color-box" style="background-color: #76923c;"></div>
+					<div class="color-box" style="background-color: #5f497a;"></div>
+					<div class="color-box" style="background-color: #31859b;"></div>
+					<div class="color-box" style="background-color: #e36c09;"></div>
+				</div>
+				<div class="flex">
+					<div class="color-box" style="background-color: #7f7f7f;"></div>
+					<div class="color-box" style="background-color: #0c0c0c;"></div>
+					<div class="color-box" style="background-color: #1d1b10;"></div>
+					<div class="color-box" style="background-color: #0f243e;"></div>
+					<div class="color-box" style="background-color: #244061;"></div>
+					<div class="color-box" style="background-color: #632423;"></div>
+					<div class="color-box" style="background-color: #4f6128;"></div>
+					<div class="color-box" style="background-color: #3f3151;"></div>
+					<div class="color-box" style="background-color: #205867;"></div>
+					<div class="color-box" style="background-color: #974806;"></div>
+				</div>
+			</div>
+			<p class="use-color-theme">标准颜色</p>
+			<div id="standardColorBox" class="flex color-box-container cut-off-rule">
+				<div class="color-box" style="background-color: #c00000;"></div>
+				<div class="color-box" style="background-color: #ff0000;"></div>
+				<div class="color-box" style="background-color: #ffc000;"></div>
+				<div class="color-box" style="background-color: #ffff00;"></div>
+				<div class="color-box" style="background-color: #92d050;"></div>
+				<div class="color-box" style="background-color: #00b050;"></div>
+				<div class="color-box" style="background-color: #00b0f0;"></div>
+				<div class="color-box" style="background-color: #0070c0;"></div>
+				<div class="color-box" style="background-color: #002060;"></div>
+				<div class="color-box" style="background-color: #7030a0;"></div>
+			</div>
+			<p class="use-color-theme">自定义颜色</p>
+			<div class="flex user-defined cut-off-rule">
+				<span style="background: {{'#' + etCtrl.userDefinedColor}}"></span>
+				<p>#</p>
+				<input type="text" ng-model="etCtrl.userDefinedColor">
+				<button type="button">确定</button>
+			</div>
+		</div>
 	</li>
 	<li class="edit-tool font-size" choiced="{{etCtrl.fontSizeChoicedStatus}}">
 		<svg ng-click="etCtrl.ChangeFontSize()" t="1484791269445" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1951" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path class="font-size-path" choiced="{{etCtrl.fontSizeChoicedStatus}}" d="M882.393227 80.195673l8.91063 237.335842c0.240828 7.224835-5.418627 13.125118-12.643462 13.125118l-4.816557 0c-6.020696 0-11.198495-4.214487-12.402634-10.11477-12.643462-62.374412-30.825964-102.83349-54.788335-121.377234-22.035748-19.507056-26.611477-29.140169-95.969897-29.140169l-77.546566 0c-6.984008 0-12.643462 5.659454-12.643462 12.643462l0 624.94826c0 44.914393 6.14111 73.934149 18.42333 87.059266 0.361242 0.361242 0.722484 0.722484 1.083725 0.963311 13.727187 11.680151 32.873001 19.266228 70.201317 22.999059 6.502352 0.60207 11.439323 6.14111 11.439323 12.643462l0 0c0 6.984008-5.659454 12.643462-12.643462 12.643462L379.905927 943.924741c-6.984008 0-12.643462-5.659454-12.643462-12.643462l0 0c0-6.502352 4.936971-11.920978 11.318909-12.523048 36.726246-3.853246 54.788335-12.88429 65.38476-27.33396 0.481656-0.60207 1.083725-1.204139 1.685795-1.685795 11.920978-10.596425 17.941675-42.746943 17.941675-96.571966L463.593603 182.667921c0-6.984008-5.659454-12.643462-12.643462-12.643462L373.283161 170.024459c-69.117592 0-73.813735 9.633114-95.608655 29.019755-0.120414 0.120414-0.361242 0.240828-0.481656 0.481656-23.841957 18.543744-42.024459 59.002822-54.547507 121.136406-1.204139 5.900282-6.381938 10.11477-12.402634 10.11477l-4.816557 0c-7.224835 0-12.88429-5.900282-12.643462-13.125118l8.549389-225.174036c0.240828-6.74318 5.779868-12.161806 12.643462-12.161806L882.393227 80.316087 882.393227 80.195673z" p-id="1952" fill="#d4237a"></path><path class="font-size-path" choiced="{{etCtrl.fontSizeChoicedStatus}}" d="M367.262465 652.161806l3.010348 80.195673c0.120414 2.408278-1.806209 4.455315-4.214487 4.455315l-1.565381 0c-2.047037 0-3.732832-1.444967-4.214487-3.37159-4.214487-21.072437-10.476011-34.67921-18.543744-40.940734-7.465663-6.622766-9.031044-9.873942-32.391345-9.873942l-26.250235 0c-2.408278 0-4.214487 1.926623-4.214487 4.214487l0 211.085607c0 15.172154 2.047037 24.925682 6.261524 29.380997 0.120414 0.120414 0.240828 0.240828 0.361242 0.361242 4.575729 3.973659 11.078081 6.502352 23.721543 7.706491 2.167451 0.240828 3.853246 2.047037 3.853246 4.214487l0 0c0 2.408278-1.926623 4.214487-4.214487 4.214487L197.478833 943.804327c-2.408278 0-4.214487-1.926623-4.214487-4.214487l0 0c0-2.167451 1.685795-3.973659 3.853246-4.214487 12.402634-1.324553 18.543744-4.334901 22.035748-9.271872 0.120414-0.240828 0.361242-0.361242 0.60207-0.60207 3.973659-3.612418 6.020696-14.449671 6.020696-32.632173L225.776105 686.841016c0-2.408278-1.926623-4.214487-4.214487-4.214487l-26.250235 0c-23.360301 0-24.925682 3.251176-32.270931 9.753528 0 0-0.120414 0.120414-0.120414 0.120414-8.067733 6.261524-14.208843 19.868297-18.42333 40.940734-0.361242 2.047037-2.167451 3.37159-4.214487 3.37159l-1.565381 0c-2.408278 0-4.334901-2.047037-4.214487-4.455315L137.271872 656.25588c0.120414-2.287865 1.926623-4.094073 4.214487-4.094073L367.262465 652.161806 367.262465 652.161806z" p-id="1953" fill="#d4237a"></path></svg>
@@ -49,6 +149,9 @@
 	</li>
 	<li class="edit-tool add-image" ng-click="etCtrl.AddImage()">
 		<svg t="1486452009806" class="icon" style="" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1845" xmlns:xlink="http://www.w3.org/1999/xlink" width="200.1953125" height="200"><defs><style type="text/css"></style></defs><path d="M928.019692 95.980308 96.019692 95.980308C42.968615 95.980308 0 138.948923 0 191.960615l0 640c0 53.011692 42.968615 96.019692 96.019692 96.019692l832 0c53.011692 0 96.019692-43.008 96.019692-96.019692L1024.039385 191.960615C1024 138.948923 980.992 95.980308 928.019692 95.980308zM944.009846 734.011077l-200.861538-267.815385c0 0-11.657846-21.661538-52.657231-21.661538-46.513231 0-60.494769 20.992-60.494769 20.992l-175.931077 271.556923c0 0-9.570462 18.195692-33.043692 18.195692-24.576 0-36.312615-18.195692-36.312615-18.195692L292.194462 631.335385c0 0-23.709538-31.389538-54.508308-31.389538-30.680615 0-56.162462 34.737231-56.162462 34.737231l-101.533538 126.503385L79.990154 209.132308c0-17.644308 14.336-32.019692 32.019692-32.019692l800.019692 0c17.683692 0 32.019692 14.375385 32.019692 32.019692L944.049231 734.011077zM463.911385 384c0 62.621538-50.727385 113.348923-113.309538 113.348923-62.582154 0-113.348923-50.766769-113.348923-113.348923 0-62.542769 50.766769-113.309538 113.348923-113.309538C413.184 270.729846 463.911385 321.457231 463.911385 384z" p-id="1846" fill="#d4237a"></path></svg>
+	</li>
+	<li class="edit-tool add-emotion" ng-click="etCtrl.AddEmotion()">
+		<svg t="1486951346759" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2006" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M721.142857 614.285714q-21.142857 69.142857-78.857143 111.428571t-130.285714 42.285714-130.285714-42.285714-78.857143-111.428571q-4.571429-14.285714 2.285714-27.714286t21.714286-18q14.285714-4.571429 27.714286 2.285714t18 21.714286q14.285714 45.714286 52.857143 74t86.571429 28.285714 86.571429-28.285714 52.857143-74q4.571429-14.857143 18.285714-21.714286t28-2.285714 21.142857 18 2.285714 27.714286zM438.857143 365.714286q0 30.285714-21.428571 51.714286t-51.714286 21.428571-51.714286-21.428571-21.428571-51.714286 21.428571-51.714286 51.714286-21.428571 51.714286 21.428571 21.428571 51.714286zM731.428571 365.714286q0 30.285714-21.428571 51.714286t-51.714286 21.428571-51.714286-21.428571-21.428571-51.714286 21.428571-51.714286 51.714286-21.428571 51.714286 21.428571 21.428571 51.714286zM877.714286 512q0-74.285714-29.142857-142t-78-116.571429-116.571429-78-142-29.142857-142 29.142857-116.571429 78-78 116.571429-29.142857 142 29.142857 142 78 116.571429 116.571429 78 142 29.142857 142-29.142857 116.571429-78 78-116.571429 29.142857-142zM950.857143 512q0 119.428571-58.857143 220.285714t-159.714286 159.714286-220.285714 58.857143-220.285714-58.857143-159.714286-159.714286-58.857143-220.285714 58.857143-220.285714 159.714286-159.714286 220.285714-58.857143 220.285714 58.857143 159.714286 159.714286 58.857143 220.285714z" p-id="2007" fill="#d4237a"></path></svg>
 	</li>
 	<li class="edit-tool add-video" ng-click="etCtrl.AddVideo()">
 		<svg t="1486453241328" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3322" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M891.345296 337.440335 891.345296 408.655284 819.047726 408.655284 819.047726 612.588953 891.345296 612.588953 891.345296 682.725336 961.484624 682.725336 961.484624 337.440335Z" p-id="3323" fill="#d4237a"></path><path d="M684.832415 337.811796 546.713027 337.811796 546.713027 199.680808 132.353839 199.680808l0 138.130987L60.468678 337.811796l0 481.948567 624.363737 0L684.832415 612.588953l70.550714 0L755.383128 408.655284l-70.550714 0L684.832415 337.811796zM479.094208 268.737604l0 69.074192L199.971634 337.811796l0-69.074192L479.094208 268.737604zM543.838439 612.588953 132.353839 612.588953 132.353839 475.79031l411.4846 0L543.838439 612.588953z" p-id="3324" fill="#d4237a"></path></svg>

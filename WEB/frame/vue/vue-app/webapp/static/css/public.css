@@ -1,0 +1,114 @@
+html,body,div,header,footer,nav,ul,li,p,img,span,a {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+}
+
+a {
+    color: #7e8c8d;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 5px;
+    background-color: rgba(125, 125, 125, 0.7);
+    -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: rgba(125, 125, 125, 0.7);
+    -webkit-border-radius: 6px;
+}
+
+.mini-1px{
+    position: relative;
+}
+
+.mini-1px::after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid rgba(7,17,27,.1);
+    content: ' ';
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5){
+    .mini-1px{
+        position: relative;
+    }
+
+    .mini-1px::after{
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid rgba(7,17,27,.1);
+        content: ' ';
+        -webkit-transform: scaleY(.75);
+        -moz-transform: scaleY(.75);
+        -ms-transform: scaleY(.75);
+        transform: scaleY(.75);
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2){
+    .mini-1px{
+        position: relative;
+    }
+
+    .mini-1px::after{
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid rgba(7,17,27,.1);
+        content: ' ';
+        -webkit-transform: scaleY(.5);
+        -moz-transform: scaleY(.5);
+        -ms-transform: scaleY(.5);
+        transform: scaleY(.5);
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3){
+    .mini-1px{
+        position: relative;
+    }
+
+    .mini-1px::after{
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid rgba(7,17,27,.1);
+        content: ' ';
+        -webkit-transform: scaleY(.35);
+        -moz-transform: scaleY(.35);
+        -ms-transform: scaleY(.35);
+        transform: scaleY(.35);
+    }
+}

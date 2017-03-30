@@ -22,6 +22,10 @@
     "bootstrap": "^3.3.7",
     "vue": "^2.1.7",
     "vue-router": "^2.1.1",
-    "ng-file-upload": "^12.2.13"
+    "ng-file-upload": "^12.2.13",
+    "ng-ua-parser": "^1.0.0",
+    "angular-useragent-parser": "^0.1.0",
+    "ua-parser-js": "^0.7.12",
+    "animate.css": "animation.css#^3.5.2"
   }
 }

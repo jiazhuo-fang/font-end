@@ -90,6 +90,8 @@
 					{ID: 8, value: 'sans-serif'}
 				];
 
+				vm.userDefinedColor = 'f02b5b';
+
 
 				vm.ChangeFontfamily = function(){
 					if(vm.fontFamilyChoiceStatus){

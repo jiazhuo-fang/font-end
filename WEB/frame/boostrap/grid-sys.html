@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>grid-sys</title>
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/CSS/public.css">
+		<link rel="stylesheet" href="/CSS/bootstrap/grid-sys.css">
+	</head>
+	<body>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3>container容器下的栅格系统</h3>
+			</div>
+			<div class="panel-body">
+				<p class="alert alert-success" role="alert">代码演示</p>
+				<pre>
+					&ltdiv class="containter"&gt
+						&ltul class="row"&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+							&ltli class="col-md-1"&gtcol-md-1&lt/li&gt
+						&lt/ul&gt
+						&ltul class="row"&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+							&ltli class="col-md-2"&gtcol-md-2&lt/li&gt
+						&lt/ul&gt
+						&ltul class="row"&gt
+							&ltli class="col-md-3"&gtcol-md-3&lt/li&gt
+							&ltli class="col-md-3"&gtcol-md-3&lt/li&gt
+							&ltli class="col-md-3"&gtcol-md-3&lt/li&gt
+							&ltli class="col-md-3"&gtcol-md-3&lt/li&gt
+						&lt/ul&gt
+						&ltul class="row"&gt
+							&ltli class="col-md-4"&gtcol-md-4&lt/li&gt
+							&ltli class="col-md-4"&gtcol-md-4&lt/li&gt
+							&ltli class="col-md-4"&gtcol-md-4&lt/li&gt
+						&lt/ul&gt
+						&ltul class="row"&gt
+							&ltli class="col-md-6"&gtcol-md-6&lt/li&gt
+							&ltli class="col-md-6"&gtcol-md-6&lt/li&gt
+						&lt/ul&gt
+					&lt/div&gt
+				</pre>
+			</div>
+			<div class="panel-footer">
+				<p class="alert alert-success" role="alert">效果展示</p>
+				<div class="containter">
+					<ul class="row">
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+						<li class="col-md-1">col-md-1</li>
+					</ul>
+					<ul class="row">
+						<li class="col-md-2">col-md-2</li>
+						<li class="col-md-2">col-md-2</li>
+						<li class="col-md-2">col-md-2</li>
+						<li class="col-md-2">col-md-2</li>
+						<li class="col-md-2">col-md-2</li>
+						<li class="col-md-2">col-md-2</li>
+					</ul>
+					<ul class="row">
+						<li class="col-md-3">col-md-3</li>
+						<li class="col-md-3">col-md-3</li>
+						<li class="col-md-3">col-md-3</li>
+						<li class="col-md-3">col-md-3</li>
+					</ul>
+					<ul class="row">
+						<li class="col-md-4">col-md-4</li>
+						<li class="col-md-4">col-md-4</li>
+						<li class="col-md-4">col-md-4</li>
+					</ul>
+					<ul class="row">
+						<li class="col-md-6">col-md-6</li>
+						<li class="col-md-6">col-md-6</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>container-fluid---流式布局</h3>
+			</div>
+			<div class="panel-body">
+				<p class="alert alert-success" role="alert">代码演示</p>
+				<pre>
+					&lt;div class="container-fluid"&gt;
+						&lt;div class="row"&gt;
+							&lt;div class="col-xs-6"&gt;栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。如果在一个 .row 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。&lt;/div&gt;
+							&lt;div class="col-xs-6"&gt;col-xs-6&lt;/div&gt;
+							&lt;div class="col-xs-3"&gt;col-xs-3&lt;/div&gt;
+							&lt;div class="col-xs-3"&gt;col-xs-3&lt;/div&gt;
+							&lt;div class="col-xs-7"&gt;col-xs-7&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="panel-footer">
+				<p class="alert alert-success" role="alert">效果展示</p>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-6">栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。如果在一个 .row 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。</div>
+						<div class="col-xs-6">col-xs-6</div>
+						<div class="col-xs-3">col-xs-3</div>
+						<div class="col-xs-3">col-xs-3</div>
+						<div class="col-xs-7">col-xs-7</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-info" role="role">
+			总结：上面仅仅介绍栅格系统以及其中的流水布局，使用上大同小异，二者结合的方式我没有做出体现，因为本人做这个demo为之后写博客做的模板，用法多敲几次就可以了，关键还是要了解其中原理，建议到官网上扒源码看看，看看别人的设计思路。友情链接： <a href="http://v3.bootcss.com/css/" class="alert-link" target="_blank">Bootstrap Website</a>
+		</div>
+	</body>
+</html>

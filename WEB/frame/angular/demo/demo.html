@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body ng-controller="appController">
+		<div  append-directive>
+			<span>追加</span>
+		</div>
+		<demo></demo>
+	</body>
+	<script src="/bower_components/angular/angular.min.js"></script>
+	<script src="/bower_components/angular-useragent-parser/release/angular-useragent-parser.js"></script>
+	<script>
+		angular
+			.module('myApp',['angular-useragent-parser'])
+			.directive('appendDirective',function(){
+				return {
+					strict: 'A',
+					scope: {
+
+					},
+					link: function(scope,element){
+						console.log(element.find('span'))
+						element
+							.find('span')[0]
+							.addEventListener('click',function(){
+								alert(123);
+								angular
+									.element(document.querySelector('body'))
+									.append('<demo></demo>');
+							})
+					}
+				}
+			})
+			.directive('demo',function(){
+				return {
+					strict: 'E',
+					scope: {
+
+					},
+					template: '<div>大家好，我是新的指令</div>'
+				}
+			})
+			.controller('appController',function(UAParser){
+				var uaParser = new UAParser();
+				console.info(uaParser.getResult().os.name);
+			});
+	</script>
+</html>

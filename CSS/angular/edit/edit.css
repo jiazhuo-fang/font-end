@@ -33,16 +33,9 @@
 	height: 100%;
 }
 
-.edit-dev-container,
-.edit-show-container{
-	width: 50%;
+.edit-dev-container{
+	width: 100%;
 	height: 100%;
-}
-
-.edit-show-container{
-	border-left: 1px solid #aaa;
-	box-sizing: border-box;
-	background: #f0f0f0;
 }
 
 /*device选择部分*/
@@ -165,14 +158,82 @@
 	cursor: pointer;
 }
 
-.edit-choice-color{
+.edit-choice-color-contianer{
 	position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+	top: 40px;
+	left: -20px;
+	border: 1px solid #e1e1e1;
+	padding: 15px;
+	box-shadow: 1px 2px 5px 0px rgba(0,0,0,.3);
+}
+
+.cut-off-rule{
+	margin: 10px 0;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.recent-use-color-box-container{
+	height: 25px;
+}
+
+.use-color-theme{
+	font-size: 14px;
+}
+
+.color-box-container{
+	width: 250px;
+}
+
+.color-box{
+	width: 17px;
+	height: 17px;
+	margin: 4px;
+	border: 1px solid #e1e1e1;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.color-box[choiced="true"]{
+	box-shadow: 0 0 3px 1px;
+}
+
+.user-defined{
+	padding: 10px 0;
+}
+
+.user-defined>span{
+	width: 17px;
+	height: 17px;
+	margin: 4px;
+}
+
+.user-defined>p{
+	width: 25px;
+	height: 25px;
+	border: 1px solid #e1e1e1;
+	border-right: none;
+	text-align: center;
+	line-height: 25px;
+	box-sizing: border-box;
+}
+
+.user-defined>input{
+	height: 25px;
+	width: 120px;
+	display: block;
+	border: 1px solid #e1e1e1;
+	border-left: none;
+	box-sizing: border-box;
+}
+
+.user-defined>button{
+	display: block;
+	width: 50px;
+	height: 25px;
+	margin-left: 15px;
+	box-sizing: border-box;
+	font-family: 'Microsoft YaHei'
 }
 
 .font-family-path[choiced="true"],
@@ -214,10 +275,17 @@
 
 /*编辑区的样式*/
 .edit-content-container{
-	position: relative;
 	height: calc(100% - 140px);
 	justify-content: center;
+}
+
+.edit-content-container>div{
+	position: absolute;
+	width: 600px;
+	margin: 0 auto;
+	justify-content: center;
 	align-items: center;
+	z-index: -1;
 }
 
 .edit-process-choice-contianer{
@@ -256,11 +324,11 @@
 
 .edit-area-container{
 	position: relative;
-	padding: 10px;
-	border: 1px solid #aaa;
-	box-shadow: 0 0 3px #f0f0f0;
-	box-sizing: border-box;
-	cursor: text;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 0 1px rgba(0,0,0,.5);
+    box-sizing: border-box;
+    cursor: text;
 }
 
 .edit-area-container img{
@@ -335,12 +403,14 @@
 }
 
 .add-image:hover,
+.add-emotion:hover,
 .add-video:hover,
 .revocation-btn:hover{
 	background: #e1e1e1;
 }
 
 .add-image:hover path,
+.add-emotion:hover path,
 .add-video:hover path,
 .revocation-btn:hover path{
 	fill: #1296db;

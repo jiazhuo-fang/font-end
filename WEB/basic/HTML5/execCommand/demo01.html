@@ -12,31 +12,84 @@
 		<script type="text/javascript">
 		    var btn = document.getElementById('btn');
 		    var inputText = document.getElementById('inputText');
+		    var selectedRange = null;
+
+		    var r = this;
+		    r.execCommand = function(command, param) {
+				r.selections.restoreSelection();
+				//et.focus();
+				if (!arguments[1]) {
+					param = null
+				};
+				document.execCommand(command, false, param)
+			};
+
+			//selection管理
+			r.selections = {
+				getCurrentRange: function() {
+					if (window.getSelection) {
+						var sel = window.getSelection();
+						if (sel.rangeCount > 0) {
+							return sel.getRangeAt(0)
+						}
+					} else if (document.selection) {
+						var sel = document.selection;
+						return sel.createRange()
+					}
+					return null
+				},
+				saveSelection: function() {
+					selectedRange = r.selections.getCurrentRange()
+				},
+				restoreSelection: function() {
+					var selection = window.getSelection();
+					if (selectedRange) {
+						try {
+							selection.removeAllRanges()
+						} catch (ex) {
+							document.body.createTextRange().select();
+							document.selection.empty()
+						};
+						selection.addRange(selectedRange)
+					}
+				},
+				getSelectionHTML: function() {
+					if (window.getSelection) {
+						var sel = window.getSelection();
+						if (sel.rangeCount > 0) {
+							return sel
+						}
+					}
+				}
+			};
 		    document
 		    	.querySelector('#p')
 		    	.addEventListener('mouseup',function(){
-			    	var sel = window.getSelection();
+		    		r.selections.saveSelection();
+			    	//var sel = window.getSelection();
 			    	// document
 			    	// 	.querySelector('#p')
 			    	// 	.setSelectionRange(0,6);
-			    	document.execCommand('BackColor',true,'#f02b5b');
-			    	console.log(sel.anchorOffset,sel.focusOffset);
+			    	//document.execCommand('BackColor',true,'#f02b5b');
+			    	//console.log(sel.anchorOffset,sel.focusOffset);
 			    	//sel.removeAllRanges();
 			    	// sel.collapse(document
 		    		// 				.querySelector('#p'),0);
 		    		//sel.collapseToEnd();//取消选取并将光标移到选取内容中的最后位置
 		    		//console.log(sel.containsNode(document.querySelector('body')));//判断选取内容是否包含在当前容器内
 		    		//sel.deleteFromDocument();//删除选中文字
-			    	console.log(sel);
+			    	//console.log(sel);
 			    });
 			    
-		    // btn.addEventListener('click', function(){
-		    //     var currentFocus = document.activeElement;
-		    //     inputText.focus();
-		    //     inputText.setSelectionRange(0, inputText.value.length);
-		    //     document.execCommand('copy',true);
-		    //     currentFocus.focus();
-		    // });
+		    btn.addEventListener('click', function(){
+		    	r.selections.restoreSelection();
+		    	r.execCommand('formatBlock', '<h3>');
+		        // var currentFocus = document.activeElement;
+		        // inputText.focus();
+		        // inputText.setSelectionRange(0, inputText.value.length);
+		        // document.execCommand('copy',true);
+		        // currentFocus.focus();
+		    });
 		</script>
 	</body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>高端写法的只执行函数</title>
+	</head>
+	<body>
+		<div id="demo"></div>
+	</body>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		console.log(window);
+		// (function(fun){
+		// 	fun();
+		// })(
+		// 		(function(){
+		// 			var fun = function(){
+		// 				var r = this;
+		// 				console.log(r);
+		// 			};
+		// 			return fun;
+		// 		})()
+		// 	)
+
+		(function(fun){
+			console.log(fun);
+			fun()(123);
+		})
+		(function(){
+			var demo = function(value){
+				alert(value);
+			};
+			return demo;
+		});
+
+		// $('#demo').click(function(){
+		// 	alert(123);
+		// })
+		// // $('#demo')
+		// // 	.click();
+
+		// document
+		// 	.getElementById('demo').click();
+
+	</script>
+</html>
